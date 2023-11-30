@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Pokedex
+namespace Pokedex.Models
 {
     public partial class Pokedex
     {
