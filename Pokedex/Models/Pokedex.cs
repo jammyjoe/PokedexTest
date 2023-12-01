@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Pokedex.Models
 {
-    public partial class Pokedex
-    {
+    public partial class Pokemon
+	{
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Type1 { get; set; } = null!;
