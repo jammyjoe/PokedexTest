@@ -11,12 +11,12 @@ namespace Pokedex.Controllers
 		private readonly PokedexContext _context;
 
 		public PokemonController(PokedexContext context)
-        {
-            _context = context; 
-        }
+		{
+			_context = context;
+		}
 
 		[HttpGet]
-		public ActionResult<Pokemon> GetPokemon()
+		public ActionResult<Pokemon> GetPokemons()
 		{
 			var pokedex = _context.Pokemons.OrderBy(p => p.Id).ToList();
 
@@ -26,6 +26,17 @@ namespace Pokedex.Controllers
 			return Ok(pokedex);
 		}
 
+		[HttpGet("{id}")]
+		public ActionResult<Pokemon> GetPokemon(int id)
+		{
+			var pokedex = _context.Pokemons.FirstOrDefault(p => p.Id == id);
 
-    }
+			if (!ModelState.IsValid)
+				return NoContent();
+
+			return Ok(pokedex);
+		}
+
+
+	}
 }
