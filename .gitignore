@@ -6,6 +6,9 @@
 *.exe
 *.o
 *.so
+*.suo
+*.pdb
+
 
 # Packages #
 ############
@@ -35,3 +38,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.vs/Pokedex/v17/.suo
+/Pokedex/bin/Debug/net6.0/Pokedex.dll
+/Pokedex/bin/Debug/net6.0/Pokedex.pdb
+/Pokedex/obj/Debug/net6.0/Pokedex.dll
+/Pokedex/obj/Debug/net6.0/Pokedex.pdb
