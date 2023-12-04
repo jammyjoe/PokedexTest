@@ -21,9 +21,10 @@ namespace Pokedex.Repository
 			return _context.Pokemons.FirstOrDefault(p => p.Id == id);
 		}
 
-		public Pokemon CreatePokemon(Pokemon pokemon)
+		public bool CreatePokemon(Pokemon pokemon)
 		{
-
+			_context.Add(pokemon);
+			return SavePokemon();
 		}
 
 		public bool DeletePokemon(Pokemon pokemon)
@@ -32,9 +33,12 @@ namespace Pokedex.Repository
 			return SavePokemon();
 		}
 
-		//public Pokemon UpdatePokemon(Pokemon pokemon)
-		//{
-		//}
+		public bool UpdatePokemon(Pokemon pokemon)
+		{
+			_context.Update(pokemon);
+			return SavePokemon();
+		}
+
 		public bool SavePokemon()
 		{
 			var saved = _context.SaveChanges();

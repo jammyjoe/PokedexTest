@@ -7,9 +7,9 @@ namespace Pokedex.RepositoryInterface
 		ICollection<Pokemon> GetPokemons();
 		Pokemon GetPokemon(int id);
 
-		Pokemon CreateCharacter(Pokemon pokemon);
+		bool CreatePokemon (Pokemon pokemon);
 
-		Pokemon UpdatePokemon(Pokemon pokemon);
+		bool UpdatePokemon(Pokemon pokemon);
 
 		bool DeletePokemon(Pokemon pokemon);
 

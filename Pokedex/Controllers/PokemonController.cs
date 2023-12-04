@@ -48,14 +48,12 @@ namespace Pokedex.Controllers
 			if (pokemonCreate == null)
 				return BadRequest("This Id is invalid");
 
-			_context.Add(pokemonCreate);
-
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			_context.SaveChanges();
+			_pokemonRepository.CreatePokemon(pokemonCreate);
 
-			return Ok(pokemonCreate);
+			return Ok("Succesfully Created");
 		}
 
 
