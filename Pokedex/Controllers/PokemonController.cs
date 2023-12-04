@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Pokedex.Models;
+using Pokedex.Repository;
+using Pokedex.RepositoryInterface;
 
 namespace Pokedex.Controllers
 {
@@ -9,16 +11,18 @@ namespace Pokedex.Controllers
 	public class PokemonController : ControllerBase
 	{
 		private readonly PokedexContext _context;
+		private readonly IPokemonRepository _pokemonRepository;
 
-		public PokemonController(PokedexContext context)
+		public PokemonController(PokedexContext context, IPokemonRepository pokemonRepository)
 		{
 			_context = context;
+			_pokemonRepository = pokemonRepository;
 		}
 
 		[HttpGet]
 		public ActionResult<Pokemon> GetPokemons()
 		{
-			var pokemons = _context.Pokemons.OrderBy(p => p.Id).ToList();
+			var pokemons = _pokemonRepository.GetPokemons();
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -29,7 +33,7 @@ namespace Pokedex.Controllers
 		[HttpGet("{id}")]
 		public ActionResult<Pokemon> GetPokemon(int id)
 		{
-			var pokemon = _context.Pokemons.FirstOrDefault(p => p.Id == id);
+			var pokemon = _pokemonRepository.GetPokemon(id);
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -83,7 +87,7 @@ namespace Pokedex.Controllers
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			_context.Remove(true);
+			_context.Remove();
 
 			_context.SaveChanges();
 
