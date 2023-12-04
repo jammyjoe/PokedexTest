@@ -7,13 +7,13 @@ namespace Pokedex.RepositoryInterface
 		ICollection<Pokemon> GetPokemons();
 		Pokemon GetPokemon(int id);
 
-		//Pokemon CreateCharacter(Pokemon pokemon);
+		Pokemon CreateCharacter(Pokemon pokemon);
 
-		//Pokemon UpdatePokemon(Pokemon pokemon);
+		Pokemon UpdatePokemon(Pokemon pokemon);
 
 		bool DeletePokemon(Pokemon pokemon);
 
-		//bool SavePokemon();
+		bool SavePokemon();
 
 	}
 }

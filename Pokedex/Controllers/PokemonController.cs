@@ -78,20 +78,25 @@ namespace Pokedex.Controllers
 
 
 		[HttpDelete("{id}")]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(404)]
 		public ActionResult<Pokemon> DeletePokemon(int id)
 		{
-			var pokemonToDelete = _context.Pokemons.Any(p => p.Id == id);
+			var pokemonToDelete = _pokemonRepository.GetPokemon(id);
+
 			if (pokemonToDelete == null)
 				return NotFound("Sorry, but this pokemon doesn't exist");
 
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			_context.Remove();
+			if (!_pokemonRepository.DeletePokemon(pokemonToDelete))
+			{
+				ModelState.AddModelError("", "Something went wrong deleting pokemon");
+			}
 
-			_context.SaveChanges();
-
-			return Ok(_context);
+			return NoContent();
 		}
 	}
 }
