@@ -11,6 +11,8 @@ namespace Pokedex.RepositoryInterface
 
 		bool UpdatePokemon(Pokemon pokemon);
 
+		bool PokemonExists(int id);
+
 		bool DeletePokemon(Pokemon pokemon);
 
 		bool SavePokemon();

@@ -20,6 +20,7 @@ namespace Pokedex.Controllers
 		}
 
 		[HttpGet]
+		[ProducesResponseType(200)]
 		public ActionResult<Pokemon> GetPokemons()
 		{
 			var pokemons = _pokemonRepository.GetPokemons();
@@ -31,8 +32,14 @@ namespace Pokedex.Controllers
 		}
 
 		[HttpGet("{id}")]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+
 		public ActionResult<Pokemon> GetPokemon(int id)
 		{
+			if (!_pokemonRepository.PokemonExists(id))
+				return NotFound("This pokemon does not exist");
+
 			var pokemon = _pokemonRepository.GetPokemon(id);
 
 			if (!ModelState.IsValid)
@@ -42,6 +49,8 @@ namespace Pokedex.Controllers
 		}
 
 		[HttpPost("{id}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
 		public ActionResult<Pokemon> CreatePokemon(int id,
 			[FromBody] Pokemon pokemonCreate)
 		{
@@ -51,27 +60,38 @@ namespace Pokedex.Controllers
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			_pokemonRepository.CreatePokemon(pokemonCreate);
+			if(!_pokemonRepository.CreatePokemon(pokemonCreate));
+			{
+				ModelState.AddModelError("", "Something went wrong while savin");
+				return StatusCode(500, ModelState);
+			}
 
 			return Ok("Succesfully Created");
 		}
 
 
 		[HttpPut("{id}")]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(404)]
 		public ActionResult<Pokemon> UpdatePokemon(int id,
 	[FromBody] Pokemon pokemonCreate)
 		{
 			if (pokemonCreate == null)
 				return BadRequest("This Id is invalid");
 
-			_context.Update(pokemonCreate);
+			if (!_pokemonRepository.PokemonExists(id))
+				return NotFound("This pokemon does not exist");
 
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			_context.SaveChanges();
+			if(!_pokemonRepository.UpdatePokemon(pokemonCreate));
+			ModelState.AddModelError("","Something went wrong while saving");
+			return StatusCode(500, ModelState);
 
-			return Ok(pokemonCreate);
+
+			return NoContent();
 		}
 
 
@@ -81,10 +101,10 @@ namespace Pokedex.Controllers
 		[ProducesResponseType(404)]
 		public ActionResult<Pokemon> DeletePokemon(int id)
 		{
-			var pokemonToDelete = _pokemonRepository.GetPokemon(id);
+			if (!_pokemonRepository.PokemonExists(id))
+				return NotFound("This pokemon does not exist");
 
-			if (pokemonToDelete == null)
-				return NotFound("Sorry, but this pokemon doesn't exist");
+			var pokemonToDelete = _pokemonRepository.GetPokemon(id);
 
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);

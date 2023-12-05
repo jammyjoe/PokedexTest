@@ -39,6 +39,11 @@ namespace Pokedex.Repository
 			return SavePokemon();
 		}
 
+		public bool PokemonExists(int id)
+		{
+			return _context.Pokemons.Any(p => p.Id == id);
+		}
+
 		public bool SavePokemon()
 		{
 			var saved = _context.SaveChanges();
