@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pokedex.Models;
 using Pokedex.Repository;
 using Pokedex.RepositoryInterface;
