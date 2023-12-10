@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Pokedex.Repository;
 using Pokedex.RepositoryInterface;
@@ -12,9 +13,11 @@ namespace Pokedex
 
 			// Add services to the container.
 			builder.Services.AddControllers();
+			builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+			builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
+
 			builder.Services.AddDbContext<PokedexContext>(options =>
 				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-			builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();

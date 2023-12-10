@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "/ehW/LbcE/qIW988qqO04y2H7/Mx6Hn0F7WMG/X+mdINWbEKmeRWWoETuEvkKIMyWF3yuNJIe2mhc8lK5mbEkA==",
+  "dgSpecHash": "9W0f05n6NrQilAmq/ZRB9921spzhaQPg/eva7rk2F8+UkgXc5IArciatm5nBBFATO250Q3O1JzEHDnH1ua8Iyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\Pokedex.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jamil\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\jamil\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\jamil\\.nuget\\packages\\entityframework\\6.0.0\\entityframework.6.0.0.nupkg.sha512",
     "C:\\Users\\jamil\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\jamil\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\jamil\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\jamil\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\jamil\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\jamil\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",

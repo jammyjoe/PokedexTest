@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Pokedex.DTOs;
 using Pokedex.Models;
 using Pokedex.Repository;
 using Pokedex.RepositoryInterface;
@@ -11,18 +14,20 @@ namespace Pokedex.Controllers
 	{
 		private readonly PokedexContext _context;
 		private readonly IPokemonRepository _pokemonRepository;
+		private readonly IMapper _mapper;
 
-		public PokemonController(PokedexContext context, IPokemonRepository pokemonRepository)
+		public PokemonController(PokedexContext context, IPokemonRepository pokemonRepository, IMapper mapper)
 		{
 			_context = context;
 			_pokemonRepository = pokemonRepository;
+			_mapper = mapper;
 		}
 
 		[HttpGet]
 		[ProducesResponseType(200)]
 		public ActionResult<Pokemon> GetPokemons()
 		{
-			var pokemons = _pokemonRepository.GetPokemons();
+			var pokemons = _mapper.Map<List<PokemonDto>>(_pokemonRepository.GetPokemons());
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -39,7 +44,7 @@ namespace Pokedex.Controllers
 			if (!_pokemonRepository.PokemonExists(id))
 				return NotFound("This pokemon does not exist");
 
-			var pokemon = _pokemonRepository.GetPokemon(id);
+			var pokemon = _mapper.Map<PokemonDto>(_pokemonRepository.GetPokemon(id));
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -59,7 +64,9 @@ namespace Pokedex.Controllers
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			if(!_pokemonRepository.CreatePokemon(pokemonCreate));
+			var pokemonMap = _mapper.Map<Pokemon>(pokemonCreate);
+
+			if(!_pokemonRepository.CreatePokemon(pokemonMap));
 			{
 				ModelState.AddModelError("", "Something went wrong while savin");
 				return StatusCode(500, ModelState);
@@ -74,9 +81,9 @@ namespace Pokedex.Controllers
 		[ProducesResponseType(204)]
 		[ProducesResponseType(404)]
 		public ActionResult<Pokemon> UpdatePokemon(int id,
-	[FromBody] Pokemon pokemonCreate)
+	[FromBody] Pokemon pokemonUpdate)
 		{
-			if (pokemonCreate == null)
+			if (pokemonUpdate == null)
 				return BadRequest("This Id is invalid");
 
 			if (!_pokemonRepository.PokemonExists(id))
@@ -85,7 +92,9 @@ namespace Pokedex.Controllers
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			if(!_pokemonRepository.UpdatePokemon(pokemonCreate));
+			var pokemonMap = _mapper.Map<Pokemon>(pokemonUpdate);
+
+			if(!_pokemonRepository.UpdatePokemon(pokemonMap));
 			ModelState.AddModelError("","Something went wrong while saving");
 			return StatusCode(500, ModelState);
 

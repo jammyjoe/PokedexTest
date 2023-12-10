@@ -1,6 +1,6 @@
 ﻿namespace Pokedex.DTOs
 {
-	public record PokedexDto
+	public record PokemonDto
 	{
 		public int Id { get; set; }
 		public string Name { get; set; } = null!;

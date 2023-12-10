@@ -65,3 +65,5 @@ C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\runtime
 C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\EntityFramework.SqlServer.dll
 C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\jamil\source\repos\Pluralsight\Pokedex\Pokedex\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
