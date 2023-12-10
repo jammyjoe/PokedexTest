@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Pokedex.DTOs;
 using Pokedex.Models;
-using Pokedex.Repository;
 using Pokedex.RepositoryInterface;
 
 namespace Pokedex.Controllers
@@ -25,9 +23,9 @@ namespace Pokedex.Controllers
 
 		[HttpGet]
 		[ProducesResponseType(200)]
-		public ActionResult<Pokemon> GetPokemons()
+		public async Task<ActionResult<Pokemon>> GetPokemons()
 		{
-			var pokemons = _mapper.Map<List<PokemonDto>>(_pokemonRepository.GetPokemons());
+			var pokemons = _mapper.Map<List<PokemonDto>>(await _pokemonRepository.GetPokemons());
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -39,12 +37,12 @@ namespace Pokedex.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 
-		public ActionResult<Pokemon> GetPokemon(int id)
+		public async Task<ActionResult<Pokemon>> GetPokemon(int id)
 		{
-			if (!_pokemonRepository.PokemonExists(id))
+			if (!(await _pokemonRepository.PokemonExists(id)))
 				return NotFound("This pokemon does not exist");
 
-			var pokemon = _mapper.Map<PokemonDto>(_pokemonRepository.GetPokemon(id));
+			var pokemon = _mapper.Map<PokemonDto>(await _pokemonRepository.GetPokemon(id));
 
 			if (!ModelState.IsValid)
 				return NoContent();
@@ -55,7 +53,7 @@ namespace Pokedex.Controllers
 		[HttpPost("{id}")]
 		[ProducesResponseType(204)]
 		[ProducesResponseType(400)]
-		public ActionResult<Pokemon> CreatePokemon(int id,
+		public async Task<ActionResult<Pokemon>> CreatePokemon(int id,
 			[FromBody] Pokemon pokemonCreate)
 		{
 			if (pokemonCreate == null)
@@ -66,12 +64,11 @@ namespace Pokedex.Controllers
 
 			var pokemonMap = _mapper.Map<Pokemon>(pokemonCreate);
 
-			if(!_pokemonRepository.CreatePokemon(pokemonMap));
+			if (!(await _pokemonRepository.CreatePokemon(pokemonMap)))
 			{
 				ModelState.AddModelError("", "Something went wrong while savin");
 				return StatusCode(500, ModelState);
 			}
-
 			return Ok("Succesfully Created");
 		}
 
@@ -80,13 +77,13 @@ namespace Pokedex.Controllers
 		[ProducesResponseType(400)]
 		[ProducesResponseType(204)]
 		[ProducesResponseType(404)]
-		public ActionResult<Pokemon> UpdatePokemon(int id,
+		public async Task<ActionResult<Pokemon>> UpdatePokemon(int id,
 	[FromBody] Pokemon pokemonUpdate)
 		{
 			if (pokemonUpdate == null)
 				return BadRequest("This Id is invalid");
 
-			if (!_pokemonRepository.PokemonExists(id))
+			if (!(await _pokemonRepository.PokemonExists(id)))
 				return NotFound("This pokemon does not exist");
 
 			if (!ModelState.IsValid)
@@ -94,11 +91,11 @@ namespace Pokedex.Controllers
 
 			var pokemonMap = _mapper.Map<Pokemon>(pokemonUpdate);
 
-			if(!_pokemonRepository.UpdatePokemon(pokemonMap));
-			ModelState.AddModelError("","Something went wrong while saving");
-			return StatusCode(500, ModelState);
-
-
+			if (!(await _pokemonRepository.UpdatePokemon(pokemonMap)))
+			{
+				ModelState.AddModelError("", "Something went wrong while saving");
+				return StatusCode(500, ModelState);
+			}
 			return NoContent();
 		}
 
@@ -107,21 +104,20 @@ namespace Pokedex.Controllers
 		[ProducesResponseType(400)]
 		[ProducesResponseType(204)]
 		[ProducesResponseType(404)]
-		public ActionResult<Pokemon> DeletePokemon(int id)
+		public async Task<ActionResult<Pokemon>> DeletePokemon(int id)
 		{
-			if (!_pokemonRepository.PokemonExists(id))
+			if (!(await _pokemonRepository.PokemonExists(id)))
 				return NotFound("This pokemon does not exist");
 
-			var pokemonToDelete = _pokemonRepository.GetPokemon(id);
+			var pokemonToDelete = (await _pokemonRepository.GetPokemon(id));
 
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			if (!_pokemonRepository.DeletePokemon(pokemonToDelete))
+			if (!(await _pokemonRepository.DeletePokemon(pokemonToDelete)))
 			{
 				ModelState.AddModelError("", "Something went wrong deleting pokemon");
 			}
-
 			return NoContent();
 		}
 	}
