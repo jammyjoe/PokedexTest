@@ -13,6 +13,7 @@ namespace Pokedex
 
 			// Add services to the container.
 			builder.Services.AddControllers();
+			builder.Services.AddResponseCaching(x => x.MaximumBodySize = 1024);
 			builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 
@@ -35,6 +36,7 @@ namespace Pokedex
 
 			app.UseAuthorization();
 
+			app.UseResponseCaching();
 
 			app.MapControllers();
 
