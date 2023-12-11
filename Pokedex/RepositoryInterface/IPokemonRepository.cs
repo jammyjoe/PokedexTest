@@ -4,18 +4,13 @@ namespace Pokedex.RepositoryInterface
 {
 	public interface IPokemonRepository
 	{
-		ICollection<Pokemon> GetPokemons();
-		Pokemon GetPokemon(int id);
-
-		bool CreatePokemon (Pokemon pokemon);
-
-		bool UpdatePokemon(Pokemon pokemon);
-
-		bool PokemonExists(int id);
-
-		bool DeletePokemon(Pokemon pokemon);
-
-		bool SavePokemon();
+		Task<ICollection<Pokemon>> GetPokemons();
+		Task<Pokemon> GetPokemon(int id);
+		Task<bool> CreatePokemon(Pokemon pokemon);
+		Task<bool> UpdatePokemon(Pokemon pokemon);
+		Task<bool> PokemonExists(int id);
+		Task<bool> DeletePokemon(Pokemon pokemon);
+		Task<bool> SavePokemon();
 
 	}
 }
