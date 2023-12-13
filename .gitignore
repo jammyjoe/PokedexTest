@@ -55,3 +55,4 @@ Thumbs.db
 /.vs/Pokedex/FileContentIndex/17b0a488-f41c-478e-b636-8fa7878d994c.vsidx
 /.vs/Pokedex/DesignTimeBuild/.dtbcache.v2
 /.vs/Pokedex/v17/.futdcache.v2
+/Pokedex/Controllers/ErrorsController.cs
