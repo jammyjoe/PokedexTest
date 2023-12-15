@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\Pokedex.csproj": {}
+    "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\Pokedex.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\Pokedex.csproj": {
+    "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\Pokedex.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\Pokedex.csproj",
+        "projectUniqueName": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\Pokedex.csproj",
         "projectName": "Pokedex",
-        "projectPath": "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\Pokedex.csproj",
-        "packagesPath": "C:\\Users\\jamil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jamil\\source\\repos\\Pluralsight\\Pokedex\\Pokedex\\obj\\",
+        "projectPath": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\Pokedex.csproj",
+        "packagesPath": "C:\\Users\\MunayemJ\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jamil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MunayemJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,8 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
-          "C:\\Users\\jamil\\source\\repos\\Ac\\artifacts": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
