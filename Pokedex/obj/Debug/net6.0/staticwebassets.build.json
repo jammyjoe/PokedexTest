@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "cLbu+n/Q0cEqTxsafICsICULbEv6SVartndd+jxbjEs=",
-  "Source": "Pokedex",
-  "BasePath": "_content/Pokedex",
+  "Hash": "TkRXvoU5MEVP676p1IRfusjLA+jUbU1jmgaQt3BRhaM=",
+  "Source": "PokedexAPI",
+  "BasePath": "_content/PokedexAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
