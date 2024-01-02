@@ -22,6 +22,9 @@ namespace Pokedex.Controllers
 			_mapper = mapper;
 		}
 
+		//Controller Methods
+
+
 		[HttpGet]
 		[ProducesResponseType(200)]
 		public async Task<ActionResult<Pokemon>> GetPokemons()

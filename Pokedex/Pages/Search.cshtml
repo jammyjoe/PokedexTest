@@ -1,0 +1,30 @@
+﻿@page
+@model SearchModel
+@{
+    ViewBag.Title = "Search Page";
+}
+
+<h1>Search</h1>
+<form method="post">
+    <label asp-for="Search.Id">Id</label>
+    <br />
+    <input type="number" asp-for="Search.Id" />
+    <span asp-validation-for="Search.Id"></span>
+    <button type="submit">Search</button>
+    
+    @if (Model.Pokemon != null)
+    {
+        <div>
+            <p>ID: @Model.Pokemon.Id</p>
+            <p>Name: @Model.Pokemon.Name</p>
+            <p>Type: @Model.Pokemon.Type1</p>
+            @if (Model.Pokemon.Type2 != null)
+            {
+                <p>Type: @Model.Pokemon.Type2</p>
+            }
+        </div>
+    }
+    <div>@Model.Message</div>
+</form>
+
+

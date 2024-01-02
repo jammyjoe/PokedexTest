@@ -15,3 +15,8 @@ Content-Type: application/json
   "type1": "Ghost",
   "type2": "Poison"
 }
+
+
+###
+
+DELETE https://localhost:7224/api/pokemon/0
