@@ -7,10 +7,10 @@
 <div class="w-96 mx-auto bg-white p-2">
     <h1>Search</h1>
     <form method="post">
-        <label asp-for="Search.Id">Id</label>
+        <label asp-for="Search.Name">Name</label>
         <br />
-        <input type="number" asp-for="Search.Id" />
-        <span asp-validation-for="Search.Id"></span>
+        <input asp-for="Search.Name" />
+        <span asp-validation-for="Search.Name"></span>
         <button class="bg-green-600 hover:bg-green-800" type="submit">Search</button>
 
         @if (Model.Pokemon != null)

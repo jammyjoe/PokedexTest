@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.DTOs;
 using Pokedex.Models;
 using Pokedex.RepositoryInterface;
 
@@ -22,13 +23,18 @@ namespace Pokedex.Repository
 			return await _context.Pokemons.FirstOrDefaultAsync(p => p.Id == id);
 		}
 
-		public async Task<bool> CreatePokemon(Pokemon pokemon)
+        public async Task<Pokemon> GetPokemon(string name)
+        {
+            return await _context.Pokemons.FirstOrDefaultAsync(p => p.Name == name);
+        }
+
+        public async Task<bool> CreatePokemon(Pokemon pokemon)
 		{
 			_context.Add(pokemon);
 			return await SavePokemon();
 		}
 
-		public async Task<bool> DeletePokemon(Pokemon pokemon)
+        public async Task<bool> DeletePokemon(Pokemon pokemon)
 		{
 			_context.Remove(pokemon);
 			return await SavePokemon();
@@ -45,7 +51,11 @@ namespace Pokedex.Repository
 			return await _context.Pokemons.AnyAsync(p => p.Id == id);
 		}
 
-		public async Task<bool> SavePokemon()
+        public async Task<bool> PokemonExists(string name)
+        {
+            return await _context.Pokemons.AnyAsync(p => p.Name == name);
+        }
+        public async Task<bool> SavePokemon()
 		{
 			var saved = _context.SaveChanges();
 			return saved > 0 ? true : false;

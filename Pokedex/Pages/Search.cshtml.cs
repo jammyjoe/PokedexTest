@@ -24,20 +24,20 @@ namespace PokedexAPI.Pages
 
         public async Task OnPostAsync()
         {
-            if (Search.Id == null || Search.Id <= 0)
+            if (Search.Name == null)
             {
                 ModelState.Clear();
                 Message = "Not found";
                 return;
             }
 
-            if (!await _repository.PokemonExists(Search.Id))
+            if (!await _repository.PokemonExists(Search.Name))
             {
                 Message = "This Pokemon does not exist";
                 return;
             }
 
-            Pokemon = await _repository.GetPokemon(Search.Id);
+            Pokemon = await _repository.GetPokemon(Search.Name);
             ModelState.Clear();
             Message = "Successfully retrieved Pokemon";
         }

@@ -54,7 +54,24 @@ namespace Pokedex.Controllers
 			return Ok(pokemon);
 		}
 
-		[HttpPost("{id}")]
+        [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+
+        public async Task<ActionResult<Pokemon>> GetPokemon(string name)
+        {
+            if (!(await _pokemonRepository.PokemonExists(name)))
+                return NotFound("This pokemon does not exist");
+
+            var pokemon = _mapper.Map<PokemonDto>(await _pokemonRepository.GetPokemon(name));
+
+            if (!ModelState.IsValid)
+                return NoContent();
+
+            return Ok(pokemon);
+        }
+
+        [HttpPost("{id}")]
 		[ProducesResponseType(204)]
 		[ProducesResponseType(400)]
 		public async Task<ActionResult<Pokemon>> CreatePokemon(int id,
