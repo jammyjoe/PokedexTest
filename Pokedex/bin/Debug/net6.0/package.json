@@ -11,6 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "tailwindcss": "^3.4.0"
+  },
+  "-vs-binding": {
+    "ProjectOpened": [
+      "css"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
   }
-, "-vs-binding":{"ProjectOpened":["css"]}
 }
