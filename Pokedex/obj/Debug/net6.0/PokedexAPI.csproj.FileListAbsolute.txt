@@ -68,3 +68,6 @@ C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\obj\Debug\net6.0\PokedexAPI.g
 C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\obj\Debug\net6.0\ref\PokedexAPI.dll
 C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\obj\Debug\net6.0\PokedexAPI.RazorAssemblyInfo.cache
 C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\obj\Debug\net6.0\PokedexAPI.RazorAssemblyInfo.cs
+C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\bin\Debug\net6.0\PokedexAPI.staticwebassets.runtime.json
+C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\bin\Debug\net6.0\package-lock.json
+C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\bin\Debug\net6.0\package.json
