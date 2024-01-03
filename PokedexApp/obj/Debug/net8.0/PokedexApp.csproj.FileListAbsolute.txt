@@ -11,8 +11,6 @@ C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexAp
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.AssemblyInfo.cs
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.csproj.CoreCompileInputs.cache
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.RazorAssemblyInfo.cache
-C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.RazorAssemblyInfo.cs
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.sourcelink.json
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\staticwebassets.development.json
@@ -71,3 +69,5 @@ C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\runtimes\
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\PokedexAPI.dll
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\PokedexAPI.pdb
 C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.csproj.CopyComplete
+C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\package-lock.json
+C:\Users\MunayemJ\source\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\package.json
