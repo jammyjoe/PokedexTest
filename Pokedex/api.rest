@@ -1,0 +1,22 @@
+GET https://localhost:7224/api/pokemon
+
+###
+
+GET https://localhost:7224/api/pokemon/14
+
+###
+
+POST https://localhost:7224/api/pokemon/14
+Content-Type: application/json
+
+{
+  "id": 14,
+  "name": "Gengar",
+  "type1": "Ghost",
+  "type2": "Poison"
+}
+
+
+###
+
+DELETE https://localhost:7224/api/pokemon/0
