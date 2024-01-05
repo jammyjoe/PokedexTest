@@ -6,7 +6,8 @@ namespace Pokedex.RepositoryInterface
 	public interface IPokemonRepository
 	{
 		Task<ICollection<Pokemon>> GetPokemons();
-		Task<Pokemon> GetPokemon(int id);
+        Task<string> GetTypeById(int typeId);
+        Task<Pokemon> GetPokemon(int id);
         Task<Pokemon> GetPokemon(string name);
         Task<bool> CreatePokemon(Pokemon pokemon);
 		Task<bool> UpdatePokemon(Pokemon pokemon);

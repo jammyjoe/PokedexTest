@@ -20,3 +20,7 @@ Content-Type: application/json
 ###
 
 DELETE https://localhost:7224/api/pokemon/0
+
+###
+
+GET https://localhost:7224/api/pokemon/types/8

@@ -14,7 +14,14 @@ namespace Pokedex.Repository
 			_context = context;
 		}
 
-		public async Task<ICollection<Pokemon>> GetPokemons()
+        public async Task<string> GetTypeById(int typeId)
+        {
+            return await _context.PokemonTypes
+                .Where(t => t.Id == typeId)
+                .Select(t => t.TypeName)
+                .FirstOrDefaultAsync();
+        }
+        public async Task<ICollection<Pokemon>> GetPokemons()
 		{
 			return await _context.Pokemons.OrderBy(p => p.Id).ToListAsync();
 		}

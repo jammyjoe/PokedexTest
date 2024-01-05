@@ -54,7 +54,7 @@ namespace Pokedex.Controllers
 			return Ok(pokemon);
 		}
 
-        [HttpGet("{id}")]
+        [HttpGet("{name}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
 
@@ -141,5 +141,18 @@ namespace Pokedex.Controllers
 			}
 			return NoContent();
 		}
-	}
+
+        [HttpGet("types/{typeId:int}")]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult<PokemonType>> GetType(int typeId)
+        {
+            var type = _mapper.Map<string>(await _pokemonRepository.GetTypeById(typeId));
+
+            if (!ModelState.IsValid)
+                return NoContent();
+
+            return Ok(type);
+        }
+
+    }
 }

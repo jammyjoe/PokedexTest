@@ -8,8 +8,14 @@ namespace Pokedex.Mapping
 	{
 		public MappingProfiles() 
 		{
-			CreateMap<Pokemon, PokemonDto>() ;
+			CreateMap<Pokemon, PokemonDto>();
 			CreateMap<PokemonDto, Pokemon>();
-		}
-	}
+			CreateMap<Pokemon, PokemonType>();
+            CreateMap<PokemonType, Pokemon>();
+            CreateMap<PokemonDto, PokemonType>();
+            CreateMap<PokemonType, PokemonDto>();
+
+
+        }
+    }
 }
