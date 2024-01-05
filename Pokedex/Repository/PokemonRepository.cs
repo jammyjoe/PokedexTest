@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pokedex.DTOs;
-using Pokedex.Models;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.Models;
 
 namespace Pokedex.Repository
 {

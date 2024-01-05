@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Pokedex.Models;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.Models;
 
 namespace PokedexAPI.Pages
 {
@@ -17,7 +17,7 @@ namespace PokedexAPI.Pages
         public IEnumerable<Pokemon> Pokemons { get; set; }
         public async Task OnGetAsync()
         {
-            Pokemons = await _repository.GetPokemons();
+            //Pokemons = await _repository.GetPokemons();
         }
     }
 }

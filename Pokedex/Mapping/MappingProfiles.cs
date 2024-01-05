@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Pokedex.DTOs;
-using Pokedex.Models;
+using PokedexAPI.Models;
 
 namespace Pokedex.Mapping
 {

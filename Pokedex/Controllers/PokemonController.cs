@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Pokedex.DTOs;
-using Pokedex.Models;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.Models;
 
 namespace Pokedex.Controllers
 {

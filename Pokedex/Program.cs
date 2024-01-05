@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Pokedex.Repository;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.Models;
 
 namespace Pokedex
 {
