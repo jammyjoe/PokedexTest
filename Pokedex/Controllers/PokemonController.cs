@@ -37,7 +37,7 @@ namespace Pokedex.Controllers
 			return Ok(pokemons);
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("{id:int}")]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 
@@ -47,7 +47,7 @@ namespace Pokedex.Controllers
 				return NotFound("This pokemon does not exist");
 
 			var pokemon = _mapper.Map<PokemonDto>(await _pokemonRepository.GetPokemon(id));
-
+			
 			if (!ModelState.IsValid)
 				return NoContent();
 
@@ -142,11 +142,23 @@ namespace Pokedex.Controllers
 			return NoContent();
 		}
 
-        [HttpGet("types/{typeId:int}")]
+        //[HttpGet("type/{typeId:int}")]
+        //[ProducesResponseType(200)]
+        //public async Task<ActionResult<PokemonType>> GetType(int typeId)
+        //{
+        //    var type = _mapper.Map<string>(await _pokemonRepository.GetTypeById(typeId));
+
+        //    if (!ModelState.IsValid)
+        //        return NoContent();
+
+        //    return Ok(type);
+        //}
+
+        [HttpGet("pokemontype/{typeId:int}")]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<PokemonType>> GetType(int typeId)
+        public async Task<ActionResult<PokemonType>> GetPokemonType(int typeId)
         {
-            var type = _mapper.Map<string>(await _pokemonRepository.GetTypeById(typeId));
+            var type = _mapper.Map<string>(await _pokemonRepository.GetPokemonType(typeId));
 
             if (!ModelState.IsValid)
                 return NoContent();

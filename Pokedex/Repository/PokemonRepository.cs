@@ -14,25 +14,50 @@ namespace Pokedex.Repository
 			_context = context;
 		}
 
-        public async Task<string> GetTypeById(int typeId)
+		//Getting Type Id -> TypeName (Could be useful method later)
+        //public async Task<string> GetTypeById(int typeId)
+        //{
+        //    return await _context.PokemonTypes
+        //        .Where(t => t.Id == typeId)
+        //        .Select(t => t.TypeName)
+        //        .FirstOrDefaultAsync();
+        //}
+
+        public async Task<string> GetPokemonType(int pokeId)
         {
-            return await _context.PokemonTypes
-                .Where(t => t.Id == typeId)
+            var typeID = await _context.Pokemons
+                .Where(p => p.Id == pokeId)
+                .Select(p => p.TypeId)
+                .FirstOrDefaultAsync();
+
+			return await _context.PokemonTypes
+                .Where(t => t.Id == typeID)
                 .Select(t => t.TypeName)
                 .FirstOrDefaultAsync();
         }
+
         public async Task<ICollection<Pokemon>> GetPokemons()
 		{
-			return await _context.Pokemons.OrderBy(p => p.Id).ToListAsync();
+			return await _context.Pokemons
+                .Include(t => t.Type)
+                .Include(t => t.Type2)
+                .OrderBy(p => p.Id)
+                .ToListAsync();
 		}
 		public async Task<Pokemon> GetPokemon(int id)
 		{
-			return await _context.Pokemons.FirstOrDefaultAsync(p => p.Id == id);
-		}
+			return await _context.Pokemons
+                .Include(p => p.Type)
+                .Include(p => p.Type2)
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
 
         public async Task<Pokemon> GetPokemon(string name)
         {
-            return await _context.Pokemons.FirstOrDefaultAsync(p => p.Name == name);
+            return await _context.Pokemons
+                .Include(p => p.Type)
+                .Include(p => p.Type2)
+                .FirstOrDefaultAsync(p => p.Name == name);
         }
 
         public async Task<bool> CreatePokemon(Pokemon pokemon)

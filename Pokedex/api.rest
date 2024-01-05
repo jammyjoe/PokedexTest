@@ -2,7 +2,7 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/20
+GET https://localhost:7224/api/pokemon/Gengar
 
 ###
 
@@ -23,4 +23,8 @@ DELETE https://localhost:7224/api/pokemon/0
 
 ###
 
-GET https://localhost:7224/api/pokemon/types/8
+GET https://localhost:7224/api/pokemon/type/8
+
+###
+
+GET https://localhost:7224/api/pokemon/pokemontype/2
