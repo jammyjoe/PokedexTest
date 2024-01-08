@@ -25,7 +25,7 @@ namespace PokedexAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=DefaultConnection");
+                optionsBuilder.UseSqlServer("name=DefaultConnection");
             }
         }
 
@@ -46,13 +46,13 @@ namespace PokedexAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("name");
 
+                entity.Property(e => e.Type1Id).HasColumnName("type1_id");
+
                 entity.Property(e => e.Type2Id).HasColumnName("type2_id");
 
-                entity.Property(e => e.TypeId).HasColumnName("type_id");
-
-                entity.HasOne(d => d.Type)
+                entity.HasOne(d => d.Type1)
                     .WithMany(p => p.Pokemons)
-                    .HasForeignKey(d => d.TypeId)
+                    .HasForeignKey(d => d.Type1Id)
                     .HasConstraintName("fk_type_id");
             });
 

@@ -1,19 +1,22 @@
+
 GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/Gengar
+GET https://localhost:7224/api/pokemon/3
 
 ###
 
-POST https://localhost:7224/api/pokemon/14
+POST https://localhost:7224/api/pokemon/17
 Content-Type: application/json
 
 {
-  "id": 14,
-  "name": "Gengar",
-  "type1": "Ghost",
-  "type2": "Poison"
+  "id": 17,
+  "name": "Articuno",
+  "type1":{
+    "TypeName": "Ice" },
+  "type2": {
+    "TypeName": "Flying" }
 }
 
 

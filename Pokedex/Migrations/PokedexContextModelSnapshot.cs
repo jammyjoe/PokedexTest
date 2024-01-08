@@ -36,19 +36,19 @@ namespace PokedexAPI.Migrations
                         .HasColumnType("varchar(256)")
                         .HasColumnName("name");
 
+                    b.Property<int>("Type1Id")
+                        .HasColumnType("int")
+                        .HasColumnName("type1_id");
+
                     b.Property<int?>("Type2Id")
                         .HasColumnType("int")
                         .HasColumnName("type2_id");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int")
-                        .HasColumnName("type_id");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("Type2Id");
+                    b.HasIndex("Type1Id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("Type2Id");
 
                     b.ToTable("pokemon", (string)null);
                 });
@@ -118,18 +118,18 @@ namespace PokedexAPI.Migrations
 
             modelBuilder.Entity("PokedexAPI.Models.Pokemon", b =>
                 {
-                    b.HasOne("PokedexAPI.Models.PokemonType", "Type2")
-                        .WithMany()
-                        .HasForeignKey("Type2Id");
-
-                    b.HasOne("PokedexAPI.Models.PokemonType", "Type")
+                    b.HasOne("PokedexAPI.Models.PokemonType", "Type1")
                         .WithMany("Pokemons")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("Type1Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_type_id");
 
-                    b.Navigation("Type");
+                    b.HasOne("PokedexAPI.Models.PokemonType", "Type2")
+                        .WithMany()
+                        .HasForeignKey("Type2Id");
+
+                    b.Navigation("Type1");
 
                     b.Navigation("Type2");
                 });

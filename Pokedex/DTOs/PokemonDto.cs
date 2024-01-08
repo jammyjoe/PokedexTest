@@ -1,4 +1,5 @@
 ﻿using PokedexAPI.DTOs;
+using PokedexAPI.Models;
 
 namespace Pokedex.DTOs
 {
@@ -8,7 +9,7 @@ namespace Pokedex.DTOs
 		public string Name { get; set; } 
 		public PokemonTypeDto Type1 { get; set; } 
 		public PokemonTypeDto? Type2 { get; set; }
-		//public PokemonWeakness Weakness { get; set; }
-		//public PokemonResistance Resistance { get; set; }
+		public PokemonWeakness Weakness { get; set; }
+		public PokemonResistance Resistance { get; set; }	
 	}
 }
