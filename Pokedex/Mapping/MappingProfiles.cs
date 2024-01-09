@@ -16,11 +16,13 @@ namespace Pokedex.Mapping
 
 			CreateMap<Pokemon, PokemonDto>()
 				.ForMember(dest => dest.Type1, opt => opt.MapFrom(src => src.Type1))
-				.ForMember(dest => dest.Type2, opt => opt.MapFrom(src => src.Type2));
-			CreateMap<PokemonDto, PokemonType>();
-			CreateMap<PokemonType, PokemonDto>();
-			CreateMap<PokemonType, PokemonTypeDto>();
-			CreateMap<PokemonTypeDto, PokemonType>();
-		}
+				.ForMember(dest => dest.Type2, opt => opt.MapFrom(src => src.Type2))
+                .ForMember(dest => dest.Weaknesses, opt => opt.MapFrom(src => src.PokemonWeaknesses))
+                .ForMember(dest => dest.Resistances, opt => opt.MapFrom(src => src.PokemonResistances));
+
+            CreateMap<PokemonType, PokemonTypeDto>();
+            CreateMap<PokemonWeakness, PokemonWeaknessDto>();
+            CreateMap<PokemonResistance, PokemonResistanceDto>();
+        }
 	}
 }

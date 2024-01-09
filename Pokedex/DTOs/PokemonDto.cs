@@ -3,13 +3,13 @@ using PokedexAPI.Models;
 
 namespace Pokedex.DTOs
 {
-	public record PokemonDto
-	{
-		public int Id { get; set; }
-		public string Name { get; set; } 
-		public PokemonTypeDto Type1 { get; set; } 
-		public PokemonTypeDto? Type2 { get; set; }
-		public PokemonWeakness Weakness { get; set; }
-		public PokemonResistance Resistance { get; set; }	
-	}
+    public record PokemonDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public PokemonTypeDto Type1 { get; set; }
+        public PokemonTypeDto? Type2 { get; set; }
+        public ICollection<PokemonWeaknessDto> Weaknesses { get; set; }
+        public ICollection<PokemonResistanceDto> Resistances { get; set; }
+    }
 }

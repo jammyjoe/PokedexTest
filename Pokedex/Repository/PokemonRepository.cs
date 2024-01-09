@@ -37,6 +37,20 @@ namespace Pokedex.Repository
                 .FirstOrDefaultAsync();
         }
 
+        //STARTED ON WEAKNESS/RESISTANCE METHODS
+        //public async Task<string> GetWeaknessAndResistanceType(int pokeId)
+        //{
+        //    //var typeID = await _context.Pokemons
+        //    //    .Where(p => p.Id == pokeId)
+        //    //    .Select(p => p.Id)
+        //    //    .FirstOrDefaultAsync();
+
+        //    //return await _context.PokemonResistances
+        //    //    .Where(t => t.Id == typeID)
+        //    //    .Select(t => t.Type)
+        //    //    .FirstOrDefaultAsync();
+        //}
+
         public async Task<ICollection<Pokemon>> GetPokemons()
         {
             return await _context.Pokemons
@@ -51,7 +65,9 @@ namespace Pokedex.Repository
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
                 .Include(p => p.PokemonWeaknesses)
+                    .ThenInclude(pw => pw.Type)
                 .Include(p => p.PokemonResistances)
+                    .ThenInclude(pr => pr.Type)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
