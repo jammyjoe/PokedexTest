@@ -10,6 +10,6 @@ namespace Pokedex.DTOs
         public PokemonTypeDto Type1 { get; set; }
         public PokemonTypeDto? Type2 { get; set; }
         public ICollection<PokemonWeaknessDto> Weaknesses { get; set; }
-        public ICollection<PokemonResistanceDto> Resistances { get; set; }
+        public ICollection<PokemonStrengthDto> Strengths { get; set; }
     }
 }

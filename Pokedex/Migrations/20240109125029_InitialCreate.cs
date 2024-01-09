@@ -26,27 +26,21 @@ namespace PokedexAPI.Migrations
             //    {
             //        id = table.Column<int>(type: "int", nullable: false),
             //        name = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
-            //        type1_id = table.Column<int>(type: "int", nullable: false),
+            //        type1_id = table.Column<int>(type: "int", nullable: true),
             //        type2_id = table.Column<int>(type: "int", nullable: true)
             //    },
             //    constraints: table =>
             //    {
             //        table.PrimaryKey("PK_pokemon", x => x.id);
             //        table.ForeignKey(
-            //            name: "FK_pokemon_pokemon_type_type2_id",
-            //            column: x => x.type2_id,
-            //            principalTable: "pokemon_type",
-            //            principalColumn: "id");
-            //        table.ForeignKey(
             //            name: "fk_type_id",
             //            column: x => x.type1_id,
             //            principalTable: "pokemon_type",
-            //            principalColumn: "id",
-            //            onDelete: ReferentialAction.Cascade);
+            //            principalColumn: "id");
             //    });
 
             //migrationBuilder.CreateTable(
-            //    name: "pokemon_resistance",
+            //    name: "pokemon_strength",
             //    columns: table => new
             //    {
             //        id = table.Column<int>(type: "int", nullable: false),
@@ -55,7 +49,7 @@ namespace PokedexAPI.Migrations
             //    },
             //    constraints: table =>
             //    {
-            //        table.PrimaryKey("PK_pokemon_resistance", x => x.id);
+            //        table.PrimaryKey("PK_pokemon_strength", x => x.id);
             //        table.ForeignKey(
             //            name: "FK__pokemon_r__pokem__5441852A",
             //            column: x => x.pokemon_id,
@@ -91,41 +85,41 @@ namespace PokedexAPI.Migrations
             //            principalColumn: "id");
             //    });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_type1_id",
-                table: "pokemon",
-                column: "type1_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_type1_id",
+            //    table: "pokemon",
+            //    column: "type1_id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_type2_id",
-                table: "pokemon",
-                column: "type2_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_type2_id",
+            //    table: "pokemon",
+            //    column: "type2_id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_resistance_pokemon_id",
-                table: "pokemon_resistance",
-                column: "pokemon_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_resistance_pokemon_id",
+            //    table: "pokemon_strength",
+            //    column: "pokemon_id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_resistance_type_id",
-                table: "pokemon_resistance",
-                column: "type_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_resistance_type_id",
+            //    table: "pokemon_strength",
+            //    column: "type_id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_weakness_pokemon_id",
-                table: "pokemon_weakness",
-                column: "pokemon_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_weakness_pokemon_id",
+            //    table: "pokemon_weakness",
+            //    column: "pokemon_id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_pokemon_weakness_type_id",
-                table: "pokemon_weakness",
-                column: "type_id");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_pokemon_weakness_type_id",
+            //    table: "pokemon_weakness",
+            //    column: "type_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "pokemon_resistance");
+                name: "pokemon_strength");
 
             migrationBuilder.DropTable(
                 name: "pokemon_weakness");

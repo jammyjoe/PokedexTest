@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokedexAPI.Models;
 
@@ -11,9 +12,10 @@ using PokedexAPI.Models;
 namespace PokedexAPI.Migrations
 {
     [DbContext(typeof(PokedexContext))]
-    partial class PokedexContextModelSnapshot : ModelSnapshot
+    [Migration("20240109125029_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace PokedexAPI.Migrations
                         .HasColumnType("varchar(256)")
                         .HasColumnName("name");
 
-                    b.Property<int>("Type1Id")
+                    b.Property<int?>("Type1Id")
                         .HasColumnType("int")
                         .HasColumnName("type1_id");
 
@@ -121,17 +123,9 @@ namespace PokedexAPI.Migrations
                     b.HasOne("PokedexAPI.Models.PokemonType", "Type1")
                         .WithMany("Pokemons")
                         .HasForeignKey("Type1Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_type_id");
 
-                    b.HasOne("PokedexAPI.Models.PokemonType", "Type2")
-                        .WithMany()
-                        .HasForeignKey("Type2Id");
-
                     b.Navigation("Type1");
-
-                    b.Navigation("Type2");
                 });
 
             modelBuilder.Entity("PokedexAPI.Models.PokemonStrength", b =>

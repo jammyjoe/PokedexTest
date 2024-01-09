@@ -12,8 +12,8 @@ using PokedexAPI.Models;
 namespace PokedexAPI.Migrations
 {
     [DbContext(typeof(PokedexContext))]
-    [Migration("20240108161224_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240109125855_RemoveResistance")]
+    partial class RemoveResistance
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,14 +48,14 @@ namespace PokedexAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Type1Id");
+                    b.HasIndex(new[] { "Type1Id" }, "IX_pokemon_type1_id");
 
-                    b.HasIndex("Type2Id");
+                    b.HasIndex(new[] { "Type2Id" }, "IX_pokemon_type2_id");
 
                     b.ToTable("pokemon", (string)null);
                 });
 
-            modelBuilder.Entity("PokedexAPI.Models.PokemonResistance", b =>
+            modelBuilder.Entity("PokedexAPI.Models.PokemonStrength", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
@@ -71,11 +71,11 @@ namespace PokedexAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PokemonId");
+                    b.HasIndex(new[] { "PokemonId" }, "IX_pokemon_resistance_pokemon_id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex(new[] { "TypeId" }, "IX_pokemon_resistance_type_id");
 
-                    b.ToTable("pokemon_resistance", (string)null);
+                    b.ToTable("pokemon_strength", (string)null);
                 });
 
             modelBuilder.Entity("PokedexAPI.Models.PokemonType", b =>
@@ -111,9 +111,9 @@ namespace PokedexAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PokemonId");
+                    b.HasIndex(new[] { "PokemonId" }, "IX_pokemon_weakness_pokemon_id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex(new[] { "TypeId" }, "IX_pokemon_weakness_type_id");
 
                     b.ToTable("pokemon_weakness", (string)null);
                 });
@@ -136,15 +136,15 @@ namespace PokedexAPI.Migrations
                     b.Navigation("Type2");
                 });
 
-            modelBuilder.Entity("PokedexAPI.Models.PokemonResistance", b =>
+            modelBuilder.Entity("PokedexAPI.Models.PokemonStrength", b =>
                 {
                     b.HasOne("PokedexAPI.Models.Pokemon", "Pokemon")
-                        .WithMany("PokemonResistances")
+                        .WithMany("PokemonStrengths")
                         .HasForeignKey("PokemonId")
                         .HasConstraintName("FK__pokemon_r__pokem__5441852A");
 
                     b.HasOne("PokedexAPI.Models.PokemonType", "Type")
-                        .WithMany("PokemonResistances")
+                        .WithMany("PokemonStrengths")
                         .HasForeignKey("TypeId")
                         .HasConstraintName("FK__pokemon_r__type___5535A963");
 
@@ -172,14 +172,14 @@ namespace PokedexAPI.Migrations
 
             modelBuilder.Entity("PokedexAPI.Models.Pokemon", b =>
                 {
-                    b.Navigation("PokemonResistances");
+                    b.Navigation("PokemonStrengths");
 
                     b.Navigation("PokemonWeaknesses");
                 });
 
             modelBuilder.Entity("PokedexAPI.Models.PokemonType", b =>
                 {
-                    b.Navigation("PokemonResistances");
+                    b.Navigation("PokemonStrengths");
 
                     b.Navigation("PokemonWeaknesses");
 

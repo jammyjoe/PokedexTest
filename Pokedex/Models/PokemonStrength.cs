@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PokedexAPI.Models
 {
-    public partial class PokemonResistance
+    public partial class PokemonStrength
     {
         public int Id { get; set; }
         public int? PokemonId { get; set; }

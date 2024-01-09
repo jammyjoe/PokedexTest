@@ -37,15 +37,15 @@ namespace Pokedex.Repository
                 .FirstOrDefaultAsync();
         }
 
-        //STARTED ON WEAKNESS/RESISTANCE METHODS
-        //public async Task<string> GetWeaknessAndResistanceType(int pokeId)
+        //STARTED ON WEAKNESS/Strength METHODS
+        //public async Task<string> GetWeaknessAndStrengthType(int pokeId)
         //{
         //    //var typeID = await _context.Pokemons
         //    //    .Where(p => p.Id == pokeId)
         //    //    .Select(p => p.Id)
         //    //    .FirstOrDefaultAsync();
 
-        //    //return await _context.PokemonResistances
+        //    //return await _context.PokemonStrengths
         //    //    .Where(t => t.Id == typeID)
         //    //    .Select(t => t.Type)
         //    //    .FirstOrDefaultAsync();
@@ -56,6 +56,10 @@ namespace Pokedex.Repository
             return await _context.Pokemons
                 .Include(t => t.Type1)
                 .Include(t => t.Type2)
+                .Include(p => p.PokemonWeaknesses)
+                    .ThenInclude(pw => pw.Type)
+                .Include(p => p.PokemonStrengths)
+                    .ThenInclude(pr => pr.Type)
                 .OrderBy(p => p.Id)
                 .ToListAsync();
         }
@@ -66,7 +70,7 @@ namespace Pokedex.Repository
                 .Include(p => p.Type2)
                 .Include(p => p.PokemonWeaknesses)
                     .ThenInclude(pw => pw.Type)
-                .Include(p => p.PokemonResistances)
+                .Include(p => p.PokemonStrengths)
                     .ThenInclude(pr => pr.Type)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }

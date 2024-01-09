@@ -17,7 +17,7 @@ namespace PokedexAPI.Models
         }
 
         public virtual DbSet<Pokemon> Pokemons { get; set; } = null!;
-        public virtual DbSet<PokemonResistance> PokemonResistances { get; set; } = null!;
+        public virtual DbSet<PokemonStrength> PokemonStrengths { get; set; } = null!;
         public virtual DbSet<PokemonType> PokemonTypes { get; set; } = null!;
         public virtual DbSet<PokemonWeakness> PokemonWeaknesses { get; set; } = null!;
 
@@ -25,7 +25,7 @@ namespace PokedexAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("name=DefaultConnection");
+                optionsBuilder.UseSqlServer("Name=DefaultConnection");
             }
         }
 
@@ -36,6 +36,10 @@ namespace PokedexAPI.Models
             modelBuilder.Entity<Pokemon>(entity =>
             {
                 entity.ToTable("pokemon");
+
+                entity.HasIndex(e => e.Type1Id, "IX_pokemon_type1_id");
+
+                entity.HasIndex(e => e.Type2Id, "IX_pokemon_type2_id");
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
@@ -56,9 +60,13 @@ namespace PokedexAPI.Models
                     .HasConstraintName("fk_type_id");
             });
 
-            modelBuilder.Entity<PokemonResistance>(entity =>
+            modelBuilder.Entity<PokemonStrength>(entity =>
             {
-                entity.ToTable("pokemon_resistance");
+                entity.ToTable("pokemon_strength");
+
+                entity.HasIndex(e => e.PokemonId, "IX_pokemon_resistance_pokemon_id");
+
+                entity.HasIndex(e => e.TypeId, "IX_pokemon_resistance_type_id");
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
@@ -69,12 +77,12 @@ namespace PokedexAPI.Models
                 entity.Property(e => e.TypeId).HasColumnName("type_id");
 
                 entity.HasOne(d => d.Pokemon)
-                    .WithMany(p => p.PokemonResistances)
+                    .WithMany(p => p.PokemonStrengths)
                     .HasForeignKey(d => d.PokemonId)
                     .HasConstraintName("FK__pokemon_r__pokem__5441852A");
 
                 entity.HasOne(d => d.Type)
-                    .WithMany(p => p.PokemonResistances)
+                    .WithMany(p => p.PokemonStrengths)
                     .HasForeignKey(d => d.TypeId)
                     .HasConstraintName("FK__pokemon_r__type___5535A963");
             });
@@ -96,6 +104,10 @@ namespace PokedexAPI.Models
             modelBuilder.Entity<PokemonWeakness>(entity =>
             {
                 entity.ToTable("pokemon_weakness");
+
+                entity.HasIndex(e => e.PokemonId, "IX_pokemon_weakness_pokemon_id");
+
+                entity.HasIndex(e => e.TypeId, "IX_pokemon_weakness_type_id");
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
