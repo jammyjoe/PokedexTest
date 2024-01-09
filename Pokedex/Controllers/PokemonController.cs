@@ -172,6 +172,7 @@ namespace Pokedex.Controllers
             return NoContent();
         }
 
+        //Converst TypeId to TypeName
         //[HttpGet("type/{typeId:int}")]
         //[ProducesResponseType(200)]
         //public async Task<ActionResult<PokemonType>> GetType(int typeId)
@@ -184,17 +185,18 @@ namespace Pokedex.Controllers
         //    return Ok(type);
         //}
 
-        [HttpGet("pokemontype/{typeId:int}")]
-        [ProducesResponseType(200)]
-        public async Task<ActionResult<PokemonType>> GetPokemonType(int typeId)
-        {
-            var type = _mapper.Map<string>(await _pokemonRepository.GetPokemonType(typeId));
+        //Converts PokeId to TypeName
+        //[HttpGet("pokemontype/{typeId:int}")]
+        //[ProducesResponseType(200)]
+        //public async Task<ActionResult<PokemonType>> GetPokemonType(int typeId)
+        //{
+        //    var type = _mapper.Map<string>(await _pokemonRepository.GetPokemonType(typeId));
 
-            if (!ModelState.IsValid)
-                return NoContent();
+        //    if (!ModelState.IsValid)
+        //        return NoContent();
 
-            return Ok(type);
-        }
+        //    return Ok(type);
+        //}
 
     }
 }

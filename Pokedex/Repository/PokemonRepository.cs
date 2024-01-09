@@ -24,31 +24,17 @@ namespace Pokedex.Repository
         //        .FirstOrDefaultAsync();
         //}
 
-        public async Task<string> GetPokemonType(int pokeId)
-        {
-            var typeID = await _context.Pokemons
-                .Where(p => p.Id == pokeId)
-                .Select(p => p.Type1Id)
-                .FirstOrDefaultAsync();
-
-            return await _context.PokemonTypes
-                .Where(t => t.Id == typeID)
-                .Select(t => t.TypeName)
-                .FirstOrDefaultAsync();
-        }
-
-        //STARTED ON WEAKNESS/Strength METHODS
-        //public async Task<string> GetWeaknessAndStrengthType(int pokeId)
+        //public async Task<string> GetPokemonType(int pokeId)
         //{
-        //    //var typeID = await _context.Pokemons
-        //    //    .Where(p => p.Id == pokeId)
-        //    //    .Select(p => p.Id)
-        //    //    .FirstOrDefaultAsync();
+        //    var typeID = await _context.Pokemons
+        //        .Where(p => p.Id == pokeId)
+        //        .Select(p => p.Type1Id)
+        //        .FirstOrDefaultAsync();
 
-        //    //return await _context.PokemonStrengths
-        //    //    .Where(t => t.Id == typeID)
-        //    //    .Select(t => t.Type)
-        //    //    .FirstOrDefaultAsync();
+        //    return await _context.PokemonTypes
+        //        .Where(t => t.Id == typeID)
+        //        .Select(t => t.TypeName)
+        //        .FirstOrDefaultAsync();
         //}
 
         public async Task<ICollection<Pokemon>> GetPokemons()
