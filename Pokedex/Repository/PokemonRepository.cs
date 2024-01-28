@@ -106,6 +106,35 @@ namespace Pokedex.Repository
                 }
             }
 
+            var weaknesses = pokemonDto.Weaknesses.Select(w => w.Type.TypeName);
+            var strengths = pokemonDto.Strengths.Select(s => s.Type.TypeName);
+
+            foreach (var weaknessTypeName in weaknesses)
+            {
+                var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weaknessTypeName);
+                if (weaknessType != null)
+                {
+                    pokemon.PokemonWeaknesses.Add(new PokemonWeakness { Type = weaknessType });
+                }
+                else
+                {
+                    // Handle error if the weakness type does not exist
+                }
+            }
+
+            foreach (var strengthTypeName in strengths)
+            {
+                var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strengthTypeName);
+                if (strengthType != null)
+                {
+                    pokemon.PokemonStrengths.Add(new PokemonStrength { Type = strengthType });
+                }
+                else
+                {
+                    // Handle error if the strength type does not exist
+                }
+            }
+
             try
             {
                 _context.Pokemons.Add(pokemon);
@@ -126,11 +155,11 @@ namespace Pokedex.Repository
             return await _context.PokemonTypes.AnyAsync(pt => pt.TypeName == typeName);
         }
 
-        //      public async Task<bool> CreatePokemon(Pokemon pokemon)
-        //{
-        //	_context.Add(pokemon);
-        //	return await SavePokemon();
-        //}
+        public async Task<bool> CreatePokemon(Pokemon pokemon)
+        {
+            _context.Add(pokemon);
+            return await SavePokemon();
+        }
 
         public async Task<bool> DeletePokemon(Pokemon pokemon)
         {
