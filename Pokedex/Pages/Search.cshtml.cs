@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Pokedex.Models;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.Models;
 using PokedexAPI.ViewModels;
 
 namespace PokedexAPI.Pages

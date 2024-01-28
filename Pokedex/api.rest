@@ -1,22 +1,101 @@
+
 GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/20
+GET https://localhost:7224/api/pokemon/2
 
 ###
 
-POST https://localhost:7224/api/pokemon/14
+POST https://localhost:7224/api/pokemon/17
 Content-Type: application/json
 
 {
-  "id": 14,
-  "name": "Gengar",
-  "type1": "Ghost",
-  "type2": "Poison"
+  "id": 17,
+  "name": "Articuno",
+  "type1":{
+    "TypeName": "Ice" },
+  "type2": {
+    "TypeName": "Flying" },
+  "weaknesses": [
+    {
+      "id": 6,
+      "pokemonId": 17,
+      "type": {
+        "id": 2,
+        "typeName": "Fire"
+      }
+    },
+    {
+      "id": 7,
+      "pokemonId": 17,
+      "type": {
+        "id": 8,
+        "typeName": "Electic"
+      }
+    },
+    {
+      "id": 8,
+      "pokemonId": 17,
+      "type": {
+        "id": 15,
+        "typeName": "Steel"
+      }
+    },
+    {
+      "id": 7,
+      "pokemonId": 17,
+      "type": {
+        "id": 10,
+        "typeName": "Rock"
+      }
+    }
+  ],
+   "strengths": [
+    {
+      "id": 13,
+      "pokemonId": 17,
+      "type": {
+        "id": 6,
+        "typeName": "Grass"
+      }
+    },
+    {
+      "id": 14,
+      "pokemonId": 17,
+      "type": {
+        "id": 5,
+        "typeName": "Flying"
+      }
+    },
+    {
+      "id": 15,
+      "pokemonId": 17,
+      "type": {
+        "id": 16,
+        "typeName": "Dragon"
+      }
+    },
+      {
+      "id": 16,
+      "pokemonId": 17,
+      "type": {
+        "id": 9,
+        "typeName": "Ground"
+      }
+    }
+  ]
 }
 
 
 ###
 
 DELETE https://localhost:7224/api/pokemon/0
+
+###
+
+GET https://localhost:7224/api/pokemon/type/8
+
+###
+
+GET https://localhost:7224/api/pokemon/pokemontype/2
