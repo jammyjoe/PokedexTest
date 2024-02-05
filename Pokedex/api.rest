@@ -21,59 +21,19 @@ Content-Type: application/json
     {
       "id": 6,
       "pokemonId": 17,
+      "typeId": 2,
       "type": {
         "typeName": "Fire"
-      }
-    },
-        {
-      "id": 7,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Electic"
-      }
-    },
-    {
-      "id": 8,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Steel"
-      }
-    },
-    {
-      "id": 7,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Rock"
       }
     }
   ],
    "strengths": [
     {
-      "id": 18,
+      "id": 12,
       "pokemonId": 17,
+      "typeId": 4,
       "type": {
         "typeName": "Grass"
-      }
-    },
-    {
-      "id": 19,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Flying"
-      }
-    },
-    {
-      "id": 20,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Dragon"
-      }
-    },
-      {
-      "id": 21,
-      "pokemonId": 17,
-      "type": {
-        "typeName": "Ground"
       }
     }
   ]

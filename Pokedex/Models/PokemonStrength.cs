@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PokedexAPI.Models
 {
@@ -7,6 +8,7 @@ namespace PokedexAPI.Models
     {
         public int Id { get; set; }
         public int? PokemonId { get; set; }
+        [Column("type_id")]
         public int? TypeId { get; set; }
 
         public virtual Pokemon? Pokemon { get; set; }

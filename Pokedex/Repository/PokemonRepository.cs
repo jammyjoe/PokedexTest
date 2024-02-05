@@ -109,19 +109,21 @@ namespace Pokedex.Repository
                 }
             }
 
-            var weaknesses = pokemonDto.Weaknesses.Select(w => w.Type.TypeName);
-            var strengths = pokemonDto.Strengths.Select(s => s.Type.TypeName);
+            var weaknesses = pokemonDto.Weaknesses.Select(w => w.Type);
+            var strengths = pokemonDto.Strengths.Select(s => s.Type);
 
-            foreach (var weaknessTypeName in weaknesses)
+            foreach (var weakness in weaknesses)
             {
-                var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weaknessTypeName);
+                var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weakness.TypeName);
+         
+
                 if (weaknessType != null)
                 {
                     pokemon.PokemonWeaknesses.Add(new PokemonWeakness
                     {
-                        Id = weaknessType.Id,
-                        Type = weaknessType ,
-                        PokemonId = pokemonDto.Id
+                        PokemonId = pokemonDto.Id,
+                        TypeId = weaknessType.Id,
+                        Type = weaknessType
                     });
                 }
                 else
@@ -130,16 +132,18 @@ namespace Pokedex.Repository
                 }
             }
 
-            foreach (var strengthTypeName in strengths)
+            foreach (var strength in strengths)
             {
-                var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strengthTypeName);
+                var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strength.TypeName);
+  
+
                 if (strengthType != null)
                 {
                     pokemon.PokemonStrengths.Add(new PokemonStrength
                     {
-                        Id = strengthType.Id,
+                        PokemonId = pokemonDto.Id,
+                        TypeId = strengthType.Id,
                         Type = strengthType,
-                        PokemonId = pokemonDto.Id
                     });
                 }
                 else
@@ -155,9 +159,9 @@ namespace Pokedex.Repository
             }
             catch (DbUpdateException ex)
             {
-                // Access the inner exception for details
-                var innerException = ex.InnerException;
-                // Log or handle the exception as needed
+                var exceptionMessage = ex.Message;
+                var stackTrace = ex.StackTrace;
+                var innerException = ex.InnerException;             
             }
 
             return pokemon;
