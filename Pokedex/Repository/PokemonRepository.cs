@@ -3,6 +3,9 @@ using Pokedex.DTOs;
 using Pokedex.RepositoryInterface;
 using PokedexAPI.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Pokedex.Repository
 {
@@ -114,7 +117,12 @@ namespace Pokedex.Repository
                 var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weaknessTypeName);
                 if (weaknessType != null)
                 {
-                    pokemon.PokemonWeaknesses.Add(new PokemonWeakness { Type = weaknessType });
+                    pokemon.PokemonWeaknesses.Add(new PokemonWeakness
+                    {
+                        Id = weaknessType.Id,
+                        Type = weaknessType ,
+                        PokemonId = pokemonDto.Id
+                    });
                 }
                 else
                 {
@@ -127,7 +135,12 @@ namespace Pokedex.Repository
                 var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strengthTypeName);
                 if (strengthType != null)
                 {
-                    pokemon.PokemonStrengths.Add(new PokemonStrength { Type = strengthType });
+                    pokemon.PokemonStrengths.Add(new PokemonStrength
+                    {
+                        Id = strengthType.Id,
+                        Type = strengthType,
+                        PokemonId = pokemonDto.Id
+                    });
                 }
                 else
                 {
