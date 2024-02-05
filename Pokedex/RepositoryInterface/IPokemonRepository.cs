@@ -1,4 +1,6 @@
-﻿using Pokedex.DTOs;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Pokedex.DTOs;
 using PokedexAPI.Models;
 
 namespace Pokedex.RepositoryInterface

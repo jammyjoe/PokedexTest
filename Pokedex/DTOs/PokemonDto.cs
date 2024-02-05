@@ -1,4 +1,5 @@
-﻿using PokedexAPI.DTOs;
+﻿using System.Collections.Generic;
+using PokedexAPI.DTOs;
 using PokedexAPI.Models;
 
 namespace Pokedex.DTOs

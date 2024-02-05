@@ -3,7 +3,7 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/2
+GET https://localhost:7224/api/pokemon/1
 
 ###
 
@@ -22,15 +22,13 @@ Content-Type: application/json
       "id": 6,
       "pokemonId": 17,
       "type": {
-        "id": 2,
         "typeName": "Fire"
       }
     },
-    {
+        {
       "id": 7,
       "pokemonId": 17,
       "type": {
-        "id": 8,
         "typeName": "Electic"
       }
     },
@@ -38,7 +36,6 @@ Content-Type: application/json
       "id": 8,
       "pokemonId": 17,
       "type": {
-        "id": 15,
         "typeName": "Steel"
       }
     },
@@ -46,41 +43,36 @@ Content-Type: application/json
       "id": 7,
       "pokemonId": 17,
       "type": {
-        "id": 10,
         "typeName": "Rock"
       }
     }
   ],
    "strengths": [
     {
-      "id": 13,
+      "id": 18,
       "pokemonId": 17,
       "type": {
-        "id": 6,
         "typeName": "Grass"
       }
     },
     {
-      "id": 14,
+      "id": 19,
       "pokemonId": 17,
       "type": {
-        "id": 5,
         "typeName": "Flying"
       }
     },
     {
-      "id": 15,
+      "id": 20,
       "pokemonId": 17,
       "type": {
-        "id": 16,
         "typeName": "Dragon"
       }
     },
       {
-      "id": 16,
+      "id": 21,
       "pokemonId": 17,
       "type": {
-        "id": 9,
         "typeName": "Ground"
       }
     }
