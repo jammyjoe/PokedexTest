@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I7XFu0UCM07qFHPbrGe5475weKmt7HcvGHjFSSVnt7xenGXnP/H9c4Wg+CUnZpP2zPhHXHdF3KY3UWf27qeScg==",
+  "dgSpecHash": "cfjBDkx2998aysNz+Zw5b8JzLTL8dXNnfd+iGKkW8wb+WjGjArchiCN4+TPaA4clI1JfXzhMnI9Jvub7idyaUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\PokedexApp\\PokedexApp.csproj",
+  "projectFilePath": "C:\\repos\\PokedexTest\\PokedexApp\\PokedexApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MunayemJ\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

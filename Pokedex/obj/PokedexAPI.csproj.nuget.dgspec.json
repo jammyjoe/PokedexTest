@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj": {}
+    "C:\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj": {
+    "C:\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj",
+        "projectUniqueName": "C:\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj",
         "projectName": "PokedexAPI",
-        "projectPath": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj",
+        "projectPath": "C:\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj",
         "packagesPath": "C:\\Users\\MunayemJ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MunayemJ\\source\\repos\\PokedexTest\\Pokedex\\obj\\",
+        "outputPath": "C:\\repos\\PokedexTest\\Pokedex\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

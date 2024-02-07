@@ -9,31 +9,31 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PokedexAPI
 build_property.RootNamespace = PokedexAPI
-build_property.ProjectDir = C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex\
+build_property.ProjectDir = C:\repos\PokedexTest\Pokedex\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\MunayemJ\source\repos\PokedexTest\Pokedex
+build_property.MSBuildProjectDirectory = C:\repos\PokedexTest\Pokedex
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/MunayemJ/source/repos/PokedexTest/Pokedex/Pages/Index.cshtml]
+[C:/repos/PokedexTest/Pokedex/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/MunayemJ/source/repos/PokedexTest/Pokedex/Pages/Search.cshtml]
+[C:/repos/PokedexTest/Pokedex/Pages/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VhcmNoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/MunayemJ/source/repos/PokedexTest/Pokedex/Pages/Shared/_Layout.cshtml]
+[C:/repos/PokedexTest/Pokedex/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/MunayemJ/source/repos/PokedexTest/Pokedex/Pages/_ViewImports.cshtml]
+[C:/repos/PokedexTest/Pokedex/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/MunayemJ/source/repos/PokedexTest/Pokedex/Pages/_ViewStart.cshtml]
+[C:/repos/PokedexTest/Pokedex/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
