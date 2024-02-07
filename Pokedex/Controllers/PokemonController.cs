@@ -18,9 +18,8 @@ namespace Pokedex.Controllers
         private readonly IPokemonRepository _pokemonRepository;
         private readonly IMapper _mapper;
 
-        public PokemonController(PokedexContext context, IPokemonRepository pokemonRepository, IMapper mapper)
+        public PokemonController(IPokemonRepository pokemonRepository, IMapper mapper)
         {
-            _context = context;
             _pokemonRepository = pokemonRepository;
             _mapper = mapper;
         }
@@ -35,7 +34,7 @@ namespace Pokedex.Controllers
             var pokemons = _mapper.Map<List<PokemonDto>>(await _pokemonRepository.GetPokemons());
 
             if (!ModelState.IsValid)
-                return NoContent();
+                return BadRequest(ModelState);
 
             return Ok(pokemons);
         }
