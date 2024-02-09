@@ -3,7 +3,7 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/1
+GET https://localhost:7224/api/pokemon/3
 
 ###
 
@@ -13,31 +13,28 @@ Content-Type: application/json
 {
   "id": 17,
   "name": "Articuno",
-  "type1":{
-    "TypeName": "Ice" },
+  "type1": {
+    "TypeName": "Ice"
+  },
   "type2": {
-    "TypeName": "Flying" },
+    "TypeName": "Flying"
+  },
   "weaknesses": [
     {
-      "id": 6,
-      "pokemonId": 17,
-      "typeId": 2,
       "type": {
         "typeName": "Fire"
       }
     }
   ],
-   "strengths": [
+  "strengths": [
     {
-      "id": 12,
-      "pokemonId": 17,
-      "typeId": 4,
       "type": {
         "typeName": "Grass"
       }
     }
   ]
 }
+
 
 
 ###

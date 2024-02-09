@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PokedexAPI.DTOs;
 
 namespace Pokedex.Repository
 {
@@ -74,10 +75,11 @@ namespace Pokedex.Repository
 
         public async Task<Pokemon> CreatePokemon(PokemonDto pokemonDto)
         {
+
             var pokemon = new Pokemon
             {
                 Id = pokemonDto.Id,
-                Name = pokemonDto.Name
+                Name = pokemonDto.Name,
             };
 
             var type1Exists = await PokemonTypeExists(pokemonDto.Type1.TypeName);
@@ -109,46 +111,68 @@ namespace Pokedex.Repository
                 }
             }
 
-            var weaknesses = pokemonDto.Weaknesses.Select(w => w.Type);
-            var strengths = pokemonDto.Strengths.Select(s => s.Type);
 
-            foreach (var weakness in weaknesses)
+            if (pokemonDto.Weaknesses != null)
             {
-                var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weakness.TypeName);
-         
-
-                if (weaknessType != null)
+                foreach (var weaknessDto in pokemonDto.Weaknesses)
                 {
-                    pokemon.PokemonWeaknesses.Add(new PokemonWeakness
+                    var weaknessTypeExists = await PokemonTypeExists(weaknessDto.Type.TypeName);
+                    if (!weaknessTypeExists)
                     {
-                        PokemonId = pokemonDto.Id,
-                        TypeId = weaknessType.Id,
-                        Type = weaknessType
-                    });
-                }
-                else
-                {
-                    // Handle error if the weakness type does not exist
+                        // Handle error if the provided  weakness type does not exist
+                        // Similar to the handling for Type1 and Type2
+                    }
+                    else
+                    {
+                        var typeId = await _context.PokemonWeaknesses
+                            .Select(pt => pt.Type)
+                            .Where(pt => pt.TypeName == weaknessDto.Type.TypeName)
+                            .Select(pt => pt.Id)
+                            .FirstOrDefaultAsync();
+                        var weaknessType =
+                            await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
+                                pt.TypeName == weaknessDto.Type.TypeName);
+
+                        var weakness = new PokemonWeakness()
+                        {
+                            PokemonId = pokemon.Id,
+                            TypeId = typeId,
+                            Type = weaknessType
+                        };
+                        _context.PokemonWeaknesses.Add(weakness);
+                    }
                 }
             }
 
-            foreach (var strength in strengths)
+            if (pokemonDto.Strengths != null)
             {
-                var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strength.TypeName);
-  
-
-                if (strengthType != null)
+                foreach (var strengthDto in pokemonDto.Strengths)
                 {
-                    pokemon.PokemonStrengths.Add(new PokemonStrength
+                    var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
+                    if (!strengthTypeExists)
                     {
-                        PokemonId = pokemonDto.Id,
-                        TypeId = strengthType.Id,
-                        Type = strengthType,
-                    });
-                }
-                else
-                {
-                    // Handle error if the strength type does not exist
+                        // Handle error if the provided strength type does not exist
+                        // Similar to the handling for Type1 and Type2
+                    }
+                    else
+                    {
+                        var typeId = await _context.PokemonStrengths
+                            .Select(pt => pt.Type)
+                            .Where(pt => pt.TypeName == strengthDto.Type.TypeName)
+                            .Select(pt => pt.Id)
+                            .FirstOrDefaultAsync();
+                        var strengthType =
+                            await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
+                                pt.TypeName == strengthDto.Type.TypeName);
+
+                        var strength = new PokemonStrength
+                        {
+                            PokemonId = pokemon.Id,
+                            TypeId = typeId,
+                            Type = strengthType
+                        };
+                        _context.PokemonStrengths.Add(strength);
+                    }
                 }
             }
 
@@ -161,10 +185,66 @@ namespace Pokedex.Repository
             {
                 var exceptionMessage = ex.Message;
                 var stackTrace = ex.StackTrace;
-                var innerException = ex.InnerException;             
+                var innerException = ex.InnerException;
             }
-
             return pokemon;
+
+            //var weaknesses = pokemonDto.Weaknesses.Select(w => w.Type);
+            //var strengths = pokemonDto.Strengths.Select(s => s.Type);
+
+            //foreach (var weakness in weaknesses)
+            //{
+            //    var weaknessType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == weakness.TypeName);
+
+
+            //    if (weaknessType != null)
+            //    {
+            //        var pokemonWeakness = _context.PokemonWeaknesses.Add(new PokemonWeakness
+            //        {
+            //            PokemonId = pokemonDto.Id,
+            //            TypeId = weaknessType.Id,
+            //            Type = weaknessType,
+            //        });
+            //    }
+            //    else
+            //    {
+            //        // Handle error if the weakness type does not exist
+            //    }
+            //}
+
+            //foreach (var strength in strengths)
+            //{
+            //    var strengthType = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == strength.TypeName);
+
+
+            //    if (strengthType != null)
+            //    {
+            //        var pokemonStrength = _context.PokemonStrengths.Add(new PokemonStrength
+            //        {
+            //            PokemonId = pokemonDto.Id,
+            //            TypeId = strengthType.Id,
+            //            Type = strengthType,
+            //        });
+            //    }
+            //    else
+            //    {
+            //        // Handle error if the strength type does not exist
+            //    }
+            //}
+
+            //try
+            //{
+            //    _context.Pokemons.Add(pokemon);
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    var exceptionMessage = ex.Message;
+            //    var stackTrace = ex.StackTrace;
+            //    var innerException = ex.InnerException;             
+            //}
+
+            //return pokemon;
         }
 
         public async Task<bool> PokemonTypeExists(string typeName)
