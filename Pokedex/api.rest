@@ -7,7 +7,7 @@ GET https://localhost:7224/api/pokemon/3
 
 ###
 
-POST https://localhost:7224/api/pokemon/17
+POST https://localhost:7224/api/pokemon/11
 Content-Type: application/json
 
 {
