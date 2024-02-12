@@ -4,7 +4,7 @@
 
 namespace PokedexAPI.Migrations
 {
-    public partial class RemoveResistance : Migration
+    public partial class UseIdentityColumn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

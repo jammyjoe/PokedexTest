@@ -78,7 +78,7 @@ namespace Pokedex.Repository
 
             var pokemon = new Pokemon
             {
-                Id = pokemonDto.Id,
+                //Id = pokemonDto.Id,
                 Name = pokemonDto.Name,
             };
 
@@ -109,6 +109,8 @@ namespace Pokedex.Repository
                     pokemon.Type2 = type2;
 
                 }
+                _context.Pokemons.Add(pokemon);
+                await _context.SaveChangesAsync();
             }
 
             if (pokemonDto.Weaknesses != null)
@@ -135,7 +137,7 @@ namespace Pokedex.Repository
 
                         var weakness = new PokemonWeakness()
                         {
-                            //PokemonId = pokemon.Id,
+                            PokemonId = pokemon.Id,
                             //TypeId = typeId,
                             Type = weaknessType
                         };
@@ -168,7 +170,7 @@ namespace Pokedex.Repository
 
                         var strength = new PokemonStrength
                         {
-                            //PokemonId = pokemon.Id,
+                            PokemonId = pokemon.Id,
                             //TypeId = typeId,
                             Type = strengthType
                         };
@@ -179,7 +181,7 @@ namespace Pokedex.Repository
 
             try
             {
-                _context.Pokemons.Add(pokemon);
+                //_context.Pokemons.Add(pokemon);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)

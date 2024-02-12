@@ -12,8 +12,8 @@ using PokedexAPI.Models;
 namespace PokedexAPI.Migrations
 {
     [DbContext(typeof(PokedexContext))]
-    [Migration("20240205153852_CheckDB")]
-    partial class CheckDB
+    [Migration("20240212125838_UseIdentityColumn")]
+    partial class UseIdentityColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,11 @@ namespace PokedexAPI.Migrations
             modelBuilder.Entity("PokedexAPI.Models.Pokemon", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -58,8 +61,11 @@ namespace PokedexAPI.Migrations
             modelBuilder.Entity("PokedexAPI.Models.PokemonStrength", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("PokemonId")
                         .HasColumnType("int")
@@ -98,8 +104,11 @@ namespace PokedexAPI.Migrations
             modelBuilder.Entity("PokedexAPI.Models.PokemonWeakness", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("PokemonId")
                         .HasColumnType("int")
