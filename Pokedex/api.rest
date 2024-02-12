@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/0
+DELETE https://localhost:7224/api/pokemon/17
 
 ###
 

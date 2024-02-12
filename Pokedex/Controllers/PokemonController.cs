@@ -105,28 +105,6 @@ namespace Pokedex.Controllers
             }
         }
 
-
-
-        //public async Task<ActionResult<Pokemon>> CreatePokemon(int id,
-        //	[FromBody] Pokemon pokemonCreate)
-        //{
-        //	if (pokemonCreate == null)
-        //		return BadRequest("This Id is invalid");
-
-        //	if (!ModelState.IsValid)
-        //		return BadRequest(ModelState);
-
-        //	var pokemonMap = _mapper.Map<Pokemon>(pokemonCreate);
-
-        //	if (!(await _pokemonRepository.CreatePokemon(pokemonMap)))
-        //	{
-        //		ModelState.AddModelError("", "Something went wrong while savin");
-        //		return StatusCode(500, ModelState);
-        //	}
-        //	return Ok("Succesfully Created");
-        //}
-
-
         [HttpPut("{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
