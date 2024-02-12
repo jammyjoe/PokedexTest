@@ -139,6 +139,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.23, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

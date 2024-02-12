@@ -8,10 +8,11 @@ namespace PokedexAPI.Models
     {
         public int Id { get; set; }
         public int? PokemonId { get; set; }
-        [Column("type_id")]
         public int? TypeId { get; set; }
 
+        [ForeignKey("PokemonId")]
         public virtual Pokemon? Pokemon { get; set; }
+        [ForeignKey("TypeId")]
         public virtual PokemonType? Type { get; set; }
     }
 }

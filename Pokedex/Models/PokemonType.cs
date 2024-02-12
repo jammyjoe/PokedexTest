@@ -8,15 +8,17 @@ namespace PokedexAPI.Models
         public PokemonType()
         {
             PokemonStrengths = new HashSet<PokemonStrength>();
+            PokemonType1s = new HashSet<Pokemon>();
+            PokemonType2s = new HashSet<Pokemon>();
             PokemonWeaknesses = new HashSet<PokemonWeakness>();
-            Pokemons = new HashSet<Pokemon>();
         }
 
         public int Id { get; set; }
         public string? TypeName { get; set; }
 
         public virtual ICollection<PokemonStrength> PokemonStrengths { get; set; }
+        public virtual ICollection<Pokemon> PokemonType1s { get; set; }
+        public virtual ICollection<Pokemon> PokemonType2s { get; set; }
         public virtual ICollection<PokemonWeakness> PokemonWeaknesses { get; set; }
-        public virtual ICollection<Pokemon> Pokemons { get; set; }
     }
 }

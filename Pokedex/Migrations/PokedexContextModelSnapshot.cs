@@ -69,9 +69,9 @@ namespace PokedexAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "PokemonId" }, "IX_pokemon_resistance_pokemon_id");
+                    b.HasIndex(new[] { "PokemonId" }, "IX_pokemon_strength_pokemon_id");
 
-                    b.HasIndex(new[] { "TypeId" }, "IX_pokemon_resistance_type_id");
+                    b.HasIndex(new[] { "TypeId" }, "IX_pokemon_strength_type_id");
 
                     b.ToTable("pokemon_strength", (string)null);
                 });
@@ -119,14 +119,13 @@ namespace PokedexAPI.Migrations
             modelBuilder.Entity("PokedexAPI.Models.Pokemon", b =>
                 {
                     b.HasOne("PokedexAPI.Models.PokemonType", "Type1")
-                        .WithMany("Pokemons")
+                        .WithMany("PokemonType1s")
                         .HasForeignKey("Type1Id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_type_id");
+                        .IsRequired();
 
                     b.HasOne("PokedexAPI.Models.PokemonType", "Type2")
-                        .WithMany()
+                        .WithMany("PokemonType2s")
                         .HasForeignKey("Type2Id");
 
                     b.Navigation("Type1");
@@ -179,9 +178,11 @@ namespace PokedexAPI.Migrations
                 {
                     b.Navigation("PokemonStrengths");
 
-                    b.Navigation("PokemonWeaknesses");
+                    b.Navigation("PokemonType1s");
 
-                    b.Navigation("Pokemons");
+                    b.Navigation("PokemonType2s");
+
+                    b.Navigation("PokemonWeaknesses");
                 });
 #pragma warning restore 612, 618
         }

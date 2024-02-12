@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace PokedexAPI.Models
 {
     public partial class PokedexContext : DbContext
     {
+        private static readonly ILoggerFactory MyLoggerFactory
+            = LoggerFactory.Create(builder => { builder.AddConsole(); });
         public PokedexContext()
         {
         }
@@ -25,7 +24,9 @@ namespace PokedexAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=DefaultConnection");
+                optionsBuilder
+                    .UseLoggerFactory(MyLoggerFactory)
+                    .UseSqlServer("Name=DefaultConnection");
             }
         }
 
@@ -55,18 +56,21 @@ namespace PokedexAPI.Models
                 entity.Property(e => e.Type2Id).HasColumnName("type2_id");
 
                 entity.HasOne(d => d.Type1)
-                    .WithMany(p => p.Pokemons)
-                    .HasForeignKey(d => d.Type1Id)
-                    .HasConstraintName("fk_type_id");
+                    .WithMany(p => p.PokemonType1s)
+                    .HasForeignKey(d => d.Type1Id);
+
+                entity.HasOne(d => d.Type2)
+                    .WithMany(p => p.PokemonType2s)
+                    .HasForeignKey(d => d.Type2Id);
             });
 
             modelBuilder.Entity<PokemonStrength>(entity =>
             {
                 entity.ToTable("pokemon_strength");
 
-                entity.HasIndex(e => e.PokemonId, "IX_pokemon_resistance_pokemon_id");
+                entity.HasIndex(e => e.PokemonId, "IX_pokemon_strength_pokemon_id");
 
-                entity.HasIndex(e => e.TypeId, "IX_pokemon_resistance_type_id");
+                entity.HasIndex(e => e.TypeId, "IX_pokemon_strength_type_id");
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()

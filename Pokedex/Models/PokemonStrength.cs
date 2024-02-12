@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace PokedexAPI.Models
 {
@@ -9,12 +8,13 @@ namespace PokedexAPI.Models
     {
         public int Id { get; set; }
         public int? PokemonId { get; set; }
-        [Column("type_id")]
         public int? TypeId { get; set; }
 
-        [JsonIgnore]
+        [ForeignKey("PokemonId")]
+
         public virtual Pokemon? Pokemon { get; set; }
-        [JsonIgnore]
+        [ForeignKey("TypeId")]
+
         public virtual PokemonType? Type { get; set; }
     }
 }
