@@ -42,7 +42,7 @@ namespace PokedexAPI.Models
                 entity.HasIndex(e => e.Type2Id, "IX_pokemon_type2_id");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("id");
 
                 entity.Property(e => e.Name)
@@ -69,7 +69,7 @@ namespace PokedexAPI.Models
                 entity.HasIndex(e => e.TypeId, "IX_pokemon_resistance_type_id");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("id");
 
                 entity.Property(e => e.PokemonId).HasColumnName("pokemon_id");
@@ -110,7 +110,7 @@ namespace PokedexAPI.Models
                 entity.HasIndex(e => e.TypeId, "IX_pokemon_weakness_type_id");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("id");
 
                 entity.Property(e => e.PokemonId).HasColumnName("pokemon_id");

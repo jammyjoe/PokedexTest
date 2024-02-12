@@ -11,7 +11,6 @@ POST https://localhost:7224/api/pokemon/17
 Content-Type: application/json
 
 {
-  "id": 17,
   "name": "Articuno",
   "type1": {
     "TypeName": "Ice"
