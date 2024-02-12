@@ -125,12 +125,6 @@ namespace Pokedex.Repository
                     }
                     else
                     {
-                        //var typeId = await _context.PokemonWeaknesses
-                        //    .Select(pt => pt.Type)
-                        //    .Where(pt => pt.TypeName == weaknessDto.Type.TypeName)
-                        //    .Select(pt => pt.Id)
-                        //    .FirstOrDefaultAsync();
-
                         var weaknessType =
                             await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
                                 pt.TypeName == weaknessDto.Type.TypeName);
@@ -138,7 +132,6 @@ namespace Pokedex.Repository
                         var weakness = new PokemonWeakness()
                         {
                             PokemonId = pokemon.Id,
-                            //TypeId = typeId,
                             Type = weaknessType
                         };
                         _context.PokemonWeaknesses.Add(weakness);
@@ -158,12 +151,6 @@ namespace Pokedex.Repository
                     }
                     else
                     {
-                        //var typeId = await _context.PokemonStrengths
-                        //    .Select(pt => pt.Type)
-                        //    .Where(pt => pt.TypeName == strengthDto.Type.TypeName)
-                        //    .Select(pt => pt.Id)
-                        //    .FirstOrDefaultAsync();
-
                         var strengthType =
                             await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
                                 pt.TypeName == strengthDto.Type.TypeName);
@@ -171,7 +158,6 @@ namespace Pokedex.Repository
                         var strength = new PokemonStrength
                         {
                             PokemonId = pokemon.Id,
-                            //TypeId = typeId,
                             Type = strengthType
                         };
                         _context.PokemonStrengths.Add(strength);
