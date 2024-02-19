@@ -44,17 +44,13 @@ Content-Type: application/json
   ]
 }
 
+###
 
-
-
+DELETE https://localhost:7224/api/pokemon/38
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/34
-
-###
-
-PUT https://localhost:7224/api/pokemon/42
+PUT https://localhost:7224/api/pokemon/41
 Content-Type: application/json
 
 {
