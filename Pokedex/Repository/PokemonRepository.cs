@@ -61,7 +61,7 @@ namespace Pokedex.Repository
                 .Include(p => p.PokemonWeaknesses)
                     .ThenInclude(pw => pw.Type)
                 .Include(p => p.PokemonStrengths)
-                    .ThenInclude(pr => pr.Type)
+                    .ThenInclude(ps => ps.Type)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
@@ -200,8 +200,9 @@ namespace Pokedex.Repository
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
                 .Include(p => p.PokemonStrengths)
+                .ThenInclude(ps => ps.Type)
                 .Include(p => p.PokemonWeaknesses)
-                .Include(p => p.PokemonStrengths)
+                .ThenInclude(pw => pw.Type)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             existingPokemon.Name = updatedPokemonDto.Name;
@@ -231,12 +232,14 @@ namespace Pokedex.Repository
             {
                 return false;
             }
+
             existingPokemon.Type1.TypeName = updatePokemonDto.Type1.TypeName;
 
             if (!Type2Exists)
             {
                 return false;
             }
+
             existingPokemon.Type2.TypeName = updatePokemonDto.Type2.TypeName;
 
             //Update weaknesses
@@ -250,13 +253,27 @@ namespace Pokedex.Repository
                     //Sets weaknesstype to be with FK in Type
                     var weaknessType = await _context.PokemonTypes
                         .FirstOrDefaultAsync(pt => pt.TypeName == weaknessDto.Type.TypeName);
-                    
+
                     weaknessDto.TypeId = weaknessType.Id;
 
                     var existingWeakness = existingPokemon.PokemonWeaknesses
-                        .FirstOrDefault();
+                        .FirstOrDefault(ps => ps.Type.Id == weaknessDto.Type.Id);
 
-                    existingWeakness.TypeId = weaknessType.Id;
+                    if (existingWeakness != null)
+                    {
+                        // Update the existing weakness
+                        existingWeakness.TypeId = weaknessType.Id;
+                    }
+                    else
+                    {
+                        // Add new weakness
+                        var newWeakness = new PokemonWeakness()
+                        {
+                            PokemonId = existingPokemon.Id,
+                            TypeId = weaknessType.Id
+                        };
+                        existingPokemon.PokemonWeaknesses.Add(newWeakness);
+                    }
                 }
             }
 
@@ -273,10 +290,25 @@ namespace Pokedex.Repository
                     strengthDto.TypeId = strengthsType.Id;
 
                     var existingStrength = existingPokemon.PokemonStrengths
-                        .FirstOrDefault();
+                        .FirstOrDefault(ps => ps.Type.TypeName == strengthDto.Type.TypeName);
 
-                    existingStrength.TypeId = strengthsType.Id;
+                    if (existingStrength != null)
+                    {
+                        // Update the existing strength
+                        existingStrength.TypeId = strengthsType.Id;
+                    }
+                    else
+                    {
+                        // Add new strength
+                        var newStrength = new PokemonStrength
+                        {
+                            PokemonId = existingPokemon.Id,
+                            TypeId = strengthsType.Id
+                        };
+                        existingPokemon.PokemonStrengths.Add(newStrength);
+                    }
                 }
+
             }
             try
             {

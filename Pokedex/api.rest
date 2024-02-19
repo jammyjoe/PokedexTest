@@ -11,24 +11,34 @@ POST https://localhost:7224/api/pokemon/1
 Content-Type: application/json
 
 {
-  "name": "Golem",
+  "name": "Charizard",
   "type1": {
-    "TypeName": "Rock"
+    "typeName": "Fire"
   },
   "type2": {
-    "TypeName": "Ground"
+    "typeName": "Flying"
   },
-  "pokemonweaknesses": [
+  "pokemonWeaknesses": [
     {
       "type": {
         "typeName": "Water"
       }
-    }
-  ],
-  "pokemonstrengths": [
+    },
     {
       "type": {
         "typeName": "Electric"
+      }
+    }
+  ],
+  "pokemonStrengths": [
+    {
+      "type": {
+        "typeName": "Grass"
+      }
+    },
+    {
+      "type": {
+        "typeName": "Bug"
       }
     }
   ]
@@ -36,35 +46,46 @@ Content-Type: application/json
 
 
 
-###
 
-DELETE https://localhost:7224/api/pokemon/30
 
 ###
 
-PUT https://localhost:7224/api/pokemon/31
+DELETE https://localhost:7224/api/pokemon/34
+
+###
+
+PUT https://localhost:7224/api/pokemon/42
 Content-Type: application/json
 
 {
-  "id": 31,
-  "name": "Bulbasaur",
+  "name": "Dragonite",
   "type1": {
-    "TypeName": "Ghost"
+    "typeName": "Dragon"
   },
   "type2": {
-    "TypeName": "Poison"
+    "typeName": "Flying"
   },
-  "pokemonweaknesses": [
+  "pokemonWeaknesses": [
     {
       "type": {
-        "typeName": "Dark"
+        "typeName": "Fairy"
+      }
+    },
+    {
+      "type": {
+        "typeName": "Dragon"
       }
     }
   ],
-  "pokemonstrengths": [
+  "pokemonStrengths": [
     {
       "type": {
-        "typeName": "Psychic"
+        "typeName": "Grass"
+      }
+    },
+    {
+      "type": {
+        "typeName": "Fighting"
       }
     }
   ]
