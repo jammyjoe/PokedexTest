@@ -110,9 +110,9 @@ namespace Pokedex.Repository
                 }
             }
 
-            if (pokemonDto.Weaknesses != null)
+            if (pokemonDto.PokemonWeaknesses != null)
             {
-                foreach (var weaknessDto in pokemonDto.Weaknesses)
+                foreach (var weaknessDto in pokemonDto.PokemonWeaknesses)
                 {
                     var weaknessTypeExists = await PokemonTypeExists(weaknessDto.Type.TypeName);
                     if (!weaknessTypeExists)
@@ -137,9 +137,9 @@ namespace Pokedex.Repository
                 }
             }
 
-            if (pokemonDto.Strengths != null)
+            if (pokemonDto.PokemonStrengths != null)
             {
-                foreach (var strengthDto in pokemonDto.Strengths)
+                foreach (var strengthDto in pokemonDto.PokemonStrengths)
                 {
                     var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
                     if (!strengthTypeExists)
@@ -157,7 +157,7 @@ namespace Pokedex.Repository
                         {
                             Pokemon = pokemon,
                             Type = strengthType
-                        };                       
+                        };
                         _context.PokemonStrengths.Add(strength);
                     }
                 }
@@ -182,22 +182,115 @@ namespace Pokedex.Repository
             return await _context.PokemonTypes.AnyAsync(pt => pt.TypeName == typeName);
         }
 
-        public async Task<bool> CreatePokemon(Pokemon pokemon)
-        {
-            _context.Add(pokemon);
-            return await SavePokemon();
-        }
-
         public async Task<bool> DeletePokemon(Pokemon pokemon)
         {
             _context.Remove(pokemon);
             return await SavePokemon();
         }
 
-        public async Task<bool> UpdatePokemon(Pokemon pokemon)
+        //public async Task<bool> UpdatePokemon(Pokemon pokemon)
+        //{
+        //    _context.Update(pokemon);
+        //    return await SavePokemon();
+        //}
+
+        public async Task<bool> UpdatePokemon(int id, PokemonDto updatedPokemonDto)
         {
-            _context.Update(pokemon);
-            return await SavePokemon();
+            var existingPokemon = await _context.Pokemons
+                .Include(p => p.Type1)
+                .Include(p => p.Type2)
+                .Include(p => p.PokemonStrengths)
+                .Include(p => p.PokemonWeaknesses)
+                .Include(p => p.PokemonStrengths)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            existingPokemon.Name = updatedPokemonDto.Name;
+            await UpdateType(updatedPokemonDto, existingPokemon);
+
+            try
+            {
+                _context.Update(existingPokemon);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException ex)
+            {
+                var exceptionMessage = ex.Message;
+                var stackTrace = ex.StackTrace;
+                var innerException = ex.InnerException;
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateType(PokemonDto updatePokemonDto, Pokemon existingPokemon)
+        {
+            //Update Types
+            var Type1Exists = await PokemonTypeExists(updatePokemonDto.Type1.TypeName);
+            var Type2Exists = await PokemonTypeExists(updatePokemonDto.Type2.TypeName);
+            if (!Type1Exists)
+            {
+                return false;
+            }
+            existingPokemon.Type1.TypeName = updatePokemonDto.Type1.TypeName;
+
+            if (!Type2Exists)
+            {
+                return false;
+            }
+            existingPokemon.Type2.TypeName = updatePokemonDto.Type2.TypeName;
+
+            //Update weaknesses
+
+            foreach (var weaknessDto in updatePokemonDto.PokemonWeaknesses)
+            {
+                //Checks if type exists
+                var weaknessTypeExists = await PokemonTypeExists(weaknessDto.Type.TypeName);
+                if (weaknessTypeExists)
+                {
+                    //Sets weaknesstype to be with FK in Type
+                    var weaknessType = await _context.PokemonTypes
+                        .FirstOrDefaultAsync(pt => pt.TypeName == weaknessDto.Type.TypeName);
+                    
+                    weaknessDto.TypeId = weaknessType.Id;
+
+                    var existingWeakness = existingPokemon.PokemonWeaknesses
+                        .FirstOrDefault();
+
+                    existingWeakness.TypeId = weaknessType.Id;
+                }
+            }
+
+            //Update strength
+
+            foreach (var strengthDto in updatePokemonDto.PokemonStrengths)
+            {
+                var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
+                if (strengthTypeExists)
+                {
+                    var strengthsType = await _context.PokemonTypes
+                        .FirstOrDefaultAsync(pt => pt.TypeName == strengthDto.Type.TypeName);
+
+                    strengthDto.TypeId = strengthsType.Id;
+
+                    var existingStrength = existingPokemon.PokemonStrengths
+                        .FirstOrDefault();
+
+                    existingStrength.TypeId = strengthsType.Id;
+                }
+            }
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle any exceptions during database update
+                var exceptionMessage = ex.Message;
+                var stackTrace = ex.StackTrace;
+                var innerException = ex.InnerException;
+                return false;
+            }
         }
 
         public async Task<bool> PokemonExists(int id)

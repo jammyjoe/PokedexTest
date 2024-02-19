@@ -14,7 +14,8 @@ namespace Pokedex.RepositoryInterface
         Task<Pokemon> GetPokemon(string name);
         Task<Pokemon> CreatePokemon(PokemonDto pokemon);
         Task<bool> PokemonTypeExists(string typeName);
-        Task<bool> UpdatePokemon(Pokemon pokemon);
+        Task<bool> UpdatePokemon(int id, PokemonDto updatedPokemonDto);
+        Task<bool> UpdateType(PokemonDto updatePokemonDto, Pokemon existingPokemon);
         Task<bool> PokemonExists(int id);
         Task<bool> PokemonExists(string name);
         Task<bool> DeletePokemon(Pokemon pokemon);

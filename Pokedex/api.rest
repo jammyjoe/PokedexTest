@@ -3,32 +3,32 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/3
+GET https://localhost:7224/api/pokemon/31
 
 ###
 
-POST https://localhost:7224/api/pokemon/11
+POST https://localhost:7224/api/pokemon/1
 Content-Type: application/json
 
 {
-  "name": "Articuno",
+  "name": "Golem",
   "type1": {
-    "TypeName": "Ice"
+    "TypeName": "Rock"
   },
   "type2": {
-    "TypeName": "Flying"
+    "TypeName": "Ground"
   },
-  "weaknesses": [
+  "pokemonweaknesses": [
     {
       "type": {
-        "typeName": "Fire"
+        "typeName": "Water"
       }
     }
   ],
-  "strengths": [
+  "pokemonstrengths": [
     {
       "type": {
-        "typeName": "Grass"
+        "typeName": "Electric"
       }
     }
   ]
@@ -38,7 +38,37 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/17
+DELETE https://localhost:7224/api/pokemon/30
+
+###
+
+PUT https://localhost:7224/api/pokemon/31
+Content-Type: application/json
+
+{
+  "id": 31,
+  "name": "Bulbasaur",
+  "type1": {
+    "TypeName": "Ghost"
+  },
+  "type2": {
+    "TypeName": "Poison"
+  },
+  "pokemonweaknesses": [
+    {
+      "type": {
+        "typeName": "Dark"
+      }
+    }
+  ],
+  "pokemonstrengths": [
+    {
+      "type": {
+        "typeName": "Psychic"
+      }
+    }
+  ]
+}
 
 ###
 

@@ -110,7 +110,7 @@ namespace Pokedex.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult<Pokemon>> UpdatePokemon(int id,
-    [FromBody] Pokemon pokemonUpdate)
+    [FromBody] PokemonDto pokemonUpdate)
         {
             if (pokemonUpdate == null)
                 return BadRequest("This Id is invalid");
@@ -121,9 +121,9 @@ namespace Pokedex.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var pokemonMap = _mapper.Map<Pokemon>(pokemonUpdate);
+            var pokemonMap = _mapper.Map<PokemonDto>(pokemonUpdate);
 
-            if (!(await _pokemonRepository.UpdatePokemon(pokemonMap)))
+            if (!(await _pokemonRepository.UpdatePokemon(id, pokemonMap)))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
