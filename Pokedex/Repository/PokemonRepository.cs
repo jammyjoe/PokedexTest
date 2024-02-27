@@ -237,7 +237,7 @@ namespace Pokedex.Repository
 
             if (updatePokemonDto.Type2.TypeName == "null")
             {
-                updatePokemonDto.Type2 = null;
+                updatePokemonDto.Type2.TypeName = null;
             }
 
             else if (!Type2Exists)
