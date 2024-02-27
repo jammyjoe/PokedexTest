@@ -3,11 +3,11 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/31
+GET https://localhost:7224/api/pokemon/2
 
 ###
 
-POST https://localhost:7224/api/pokemon/1
+POST https://localhost:7224/api/pokemon/3
 Content-Type: application/json
 
 {
@@ -46,11 +46,11 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/38
+DELETE https://localhost:7224/api/pokemon/3
 
 ###
 
-PUT https://localhost:7224/api/pokemon/41
+PUT https://localhost:7224/api/pokemon/2
 Content-Type: application/json
 
 {
@@ -64,24 +64,24 @@ Content-Type: application/json
   "pokemonWeaknesses": [
     {
       "type": {
-        "typeName": "Fairy"
+        "typeName": "Dark"
       }
     },
     {
       "type": {
-        "typeName": "Dragon"
+        "typeName": "Psychic"
       }
     }
   ],
   "pokemonStrengths": [
     {
       "type": {
-        "typeName": "Grass"
+        "typeName": "Fire"
       }
     },
     {
       "type": {
-        "typeName": "Fighting"
+        "typeName": "Water"
       }
     }
   ]

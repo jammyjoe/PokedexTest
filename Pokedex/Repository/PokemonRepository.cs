@@ -256,13 +256,14 @@ namespace Pokedex.Repository
 
                     weaknessDto.TypeId = weaknessType.Id;
 
-                    var existingWeakness = existingPokemon.PokemonWeaknesses
-                        .FirstOrDefault(ps => ps.Type.Id == weaknessDto.Type.Id);
+
+                    var existingWeakness = existingPokemon.PokemonStrengths
+                        .FirstOrDefault(ps => ps.TypeId == weaknessType.Id);
 
                     if (existingWeakness != null)
                     {
-                        // Update the existing weakness
                         existingWeakness.TypeId = weaknessType.Id;
+                        //existingWeakness.Type.Id = weaknessType.Id;
                     }
                     else
                     {
@@ -284,26 +285,26 @@ namespace Pokedex.Repository
                 var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
                 if (strengthTypeExists)
                 {
-                    var strengthsType = await _context.PokemonTypes
+                    var strengthType = await _context.PokemonTypes
                         .FirstOrDefaultAsync(pt => pt.TypeName == strengthDto.Type.TypeName);
 
-                    strengthDto.TypeId = strengthsType.Id;
+                    strengthDto.TypeId = strengthType.Id;
 
                     var existingStrength = existingPokemon.PokemonStrengths
-                        .FirstOrDefault(ps => ps.Type.TypeName == strengthDto.Type.TypeName);
+                        .FirstOrDefault(ps => ps.TypeId == strengthType.Id);
 
                     if (existingStrength != null)
                     {
-                        // Update the existing strength
-                        existingStrength.TypeId = strengthsType.Id;
+                        existingStrength.TypeId = strengthType.Id;
+                        //existingStrength.Type.Id = strengthType.Id;
                     }
                     else
                     {
                         // Add new strength
-                        var newStrength = new PokemonStrength
+                        var newStrength = new PokemonStrength()
                         {
                             PokemonId = existingPokemon.Id,
-                            TypeId = strengthsType.Id
+                            TypeId = strengthType.Id
                         };
                         existingPokemon.PokemonStrengths.Add(newStrength);
                     }
