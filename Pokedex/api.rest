@@ -3,7 +3,7 @@ GET https://localhost:7224/api/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/2
+GET https://localhost:7224/api/pokemon/5
 
 ###
 
@@ -50,26 +50,26 @@ DELETE https://localhost:7224/api/pokemon/3
 
 ###
 
-PUT https://localhost:7224/api/pokemon/2
+PUT https://localhost:7224/api/pokemon/5
 Content-Type: application/json
 
 {
-  "name": "Dragonite",
+  "name": "Squirtle",
   "type1": {
-    "typeName": "Dragon"
+    "typeName": "Water"
   },
   "type2": {
-    "typeName": "Flying"
+    "typeName": "null"
   },
   "pokemonWeaknesses": [
     {
       "type": {
-        "typeName": "Dark"
+        "typeName": "Grass"
       }
     },
     {
       "type": {
-        "typeName": "Psychic"
+        "typeName": "Electric"
       }
     }
   ],
@@ -81,7 +81,7 @@ Content-Type: application/json
     },
     {
       "type": {
-        "typeName": "Water"
+        "typeName": "Rock"
       }
     }
   ]
