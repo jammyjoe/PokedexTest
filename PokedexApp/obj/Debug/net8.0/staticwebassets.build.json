@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tKoxZdo0O34vqWBm428gNLewhYUMLF0a0mo/uZEXfdQ=",
+  "Hash": "fAGgsHSmU/JbgLaGmsbo73mIQROn/oKwhB06C9k7GB0=",
   "Source": "PokedexApp",
   "BasePath": "_content/PokedexApp",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\repos\\PokedexTest\\Pokedex\\wwwroot\\images\\pokeball.png",
+      "SourceId": "PokedexAPI",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\repos\\PokedexTest\\Pokedex\\wwwroot\\",
+      "BasePath": "_content/PokedexAPI",
+      "RelativePath": "images/pokeball.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\pokeball.png"
     },
     {
       "Identity": "C:\\repos\\PokedexTest\\Pokedex\\wwwroot\\js\\site.js",

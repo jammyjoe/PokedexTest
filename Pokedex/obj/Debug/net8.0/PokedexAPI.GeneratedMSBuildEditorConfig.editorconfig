@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\repos\PokedexTest\Pokedex
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/repos/PokedexTest/Pokedex/Pages/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/repos/PokedexTest/Pokedex/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

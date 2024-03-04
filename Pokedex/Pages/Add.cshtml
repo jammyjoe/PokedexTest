@@ -1,0 +1,32 @@
+﻿@page
+@model AddModel
+@{
+    ViewData["Title"] = "Add Pokemon";
+}
+
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">Add Pokemon</h1>
+
+    <form method="post" class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+        <div class="mb-4">
+            <label for="Name" class="block text-sm font-semibold mb-2">Name:</label>
+            <input type="text" id="Name" name="Name" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="Type1" class="block text-sm font-semibold mb-2">Type 1:</label>
+            <input type="text" id="Type1" name="Type1" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="Type2" class="block text-sm font-semibold mb-2">Type 2 (Optional):</label>
+            <input type="text" id="Type2" name="Type2" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <!-- Add more fields as needed -->
+
+        <div class="mt-6">
+            <button type="submit" class="bg-green-600 hover:bg-green-800 text-white px-4 py-2">Add Pokemon</button>
+        </div>
+    </form>
+</div>
