@@ -1,47 +1,57 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using PokedexAPI.Models
 @model SearchModel
 @{
     ViewBag.Title = "Search Page";
 }
 
-<div class="w-96 mx-auto bg-white p-2">
-    <h1>Search</h1>
-    <form method="post">
-        <label asp-for="Search.Name">Name</label>
-        <br />
-        <input asp-for="Search.Name" />
-        <span asp-validation-for="Search.Name"></span>
-        <button class="bg-green-600 hover:bg-green-800" type="submit">Search</button>
+<div class="w-96 mx-auto bg-white p-4">
+    <h1 class="text-2xl font-bold mb-4">Search Pokemon</h1>
 
-        @if (Model.Pokemon != null)
-        {
-             <div>
-                <p>Name: @Model.Pokemon.Name</p>
-                <p>Type: @Model.Pokemon.Type1.TypeName</p>
+    <form method="post" class="mb-4">
+        <label asp-for="Search.Name" class="block font-semibold mb-2">Name</label>
+        <input asp-for="Search.Name" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        <span asp-validation-for="Search.Name" class="text-red-500"></span>
+
+        <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 mt-4" type="submit">Search</button>
+    </form>
+
+    @if (Model.Pokemon != null)
+    {
+        <div class="bg-gray-100 p-4 rounded-md">
+            <p><strong>Name:</strong> @Model.Pokemon.Name</p>
+            <p><strong>Type:</strong> @Model.Pokemon.Type1.TypeName
                 @if (Model.Pokemon.Type2 != null)
                 {
-                    <p>Type: @Model.Pokemon.Type2.TypeName</p>
+                    <span> / @Model.Pokemon.Type2.TypeName</span>
                 }
-                <br/>
-                <p class="font-bold">Strengths:</p>
-                <ul>
+            </p>
+
+            <div class="mt-4">
+                <p class="text-lg font-semibold">Strengths:</p>
+                <ul class="list-disc pl-4">
                     @foreach (var strength in Model.Pokemon.PokemonStrengths)
                     {
                         <li>@strength.Type.TypeName</li>
                     }
                 </ul>
-                <br/>
-                <p class="font-bold">Weaknesses:</p>
-                <ul>
+            </div>
+
+            <div class="mt-4">
+                <p class="text-lg font-semibold">Weaknesses:</p>
+                <ul class="list-disc pl-4">
                     @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
                     {
                         <li>@weakness.Type.TypeName</li>
                     }
                 </ul>
-            </div> 
-        }
-        <br/>
-        <div>@Model.Message</div>
-    </form>
-</div>
+            </div>
+        </div>
+    }
 
+    else if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="mt-4 text-red-500">@Model.Message</div>
+    }
+</div>

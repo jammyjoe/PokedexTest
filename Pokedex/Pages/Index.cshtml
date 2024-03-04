@@ -1,36 +1,41 @@
 ﻿@page
-@using PokedexAPI.Models
 @model IndexModel
 @{
     ViewBag.Title = "Home Page";
 }
 
-<h1>Pokedex</h1>
-<p>Welcome to the virtual pokedex</p>
+<!-- Header Section -->
+<div class="bg-red-500 text-white p-8 text-center">
+    <h1 class="text-4xl font-bold">Pokedex</h1>
+    <p class="text-lg">Welcome to the virtual Pokedex</p>
+</div>
 
+<!-- Pokemon Cards Section -->
 @if (Model.Pokemons != null && Model.Pokemons.Any())
 {
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         @foreach (var pokemon in Model.Pokemons)
         {
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold mb-4">@pokemon.Name</h2>
+            <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
+                <h2 class="text-2xl font-bold mb-4 text-center">@pokemon.Name</h2>
+
+                <!-- Pokemon Image (replace 'YourImageURL' with the actual image URL) -->
+@*                 <div class="mb-4">
+                    <img src="YourImageURL" alt="@pokemon.Name" class="mx-auto max-h-32">
+                </div> *@
 
                 <!-- Basic Info -->
-                <div class="text-sm text-gray-600 mb-2">
+                <div class="text-sm text-gray-600 mb-4">
                     <strong>Type:</strong>
-                    @if (pokemon.Type1 != null)
-                    {
-                        @pokemon.Type1.TypeName
-                    }
-
+                    @pokemon.Type1.TypeName
                     @if (pokemon.Type2 != null)
                     {
                         <span> / @pokemon.Type2.TypeName</span>
                     }
                 </div>
 
-                <div class="text-sm text-gray-600 mb-2">
+                <!-- Strengths Section -->
+                <div class="text-sm text-gray-600 mb-4">
                     <strong>Strengths:</strong>
                     @if (pokemon.PokemonStrengths != null && pokemon.PokemonStrengths.Any())
                     {
@@ -44,7 +49,8 @@
                     }
                 </div>
 
-                <div class="text-sm text-gray-600 mb-2">
+                <!-- Weaknesses Section -->
+                <div class="text-sm text-gray-600">
                     <strong>Weaknesses:</strong>
                     @if (pokemon.PokemonWeaknesses != null && pokemon.PokemonWeaknesses.Any())
                     {
@@ -57,8 +63,6 @@
                         }
                     }
                 </div>
-
-                <!-- You can add more details or images here if needed -->
             </div>
         }
     </div>
@@ -67,4 +71,3 @@ else
 {
     <div class="text-center text-gray-500">No Pokemons Found...</div>
 }
-
