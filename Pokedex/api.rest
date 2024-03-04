@@ -11,9 +11,9 @@ POST https://localhost:7224/api/pokemon/3
 Content-Type: application/json
 
 {
-  "name": "Venasaur",
+  "name": "Weedle",
   "type1": {
-    "typeName": "Grass"
+    "typeName": "Bug"
   },
   "type2": {
     "typeName": "Poison"
@@ -26,19 +26,39 @@ Content-Type: application/json
     },
     {
       "type": {
-        "typeName": "Poison"
+        "typeName": "Flying"
+      }
+    },
+        {
+      "type": {
+        "typeName": "Psychic"
       }
     }
   ],
   "pokemonStrengths": [
     {
       "type": {
-        "typeName": "Water"
+        "typeName": "Grass"
       }
     },
     {
       "type": {
-        "typeName": "Pyschic"
+        "typeName": "Fighting"
+      }
+    },
+        {
+      "type": {
+        "typeName": "Poison"
+      }
+    },
+            {
+      "type": {
+        "typeName": "Fairy"
+      }
+    },
+            {
+      "type": {
+        "typeName": "Bug"
       }
     }
   ]
@@ -47,7 +67,7 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/3
+DELETE https://localhost:7224/api/pokemon/13
 
 ###
 
@@ -55,26 +75,14 @@ PUT https://localhost:7224/api/pokemon/5
 Content-Type: application/json
 
 {
-  "name": "Squirtle",
+  "name": "Weedle",
   "type1": {
-    "typeName": "Water"
+    "typeName": "Bug"
   },
   "type2": {
-    "typeName": "null"
+    "typeName": "Poison"
   },
   "pokemonWeaknesses": [
-    {
-      "type": {
-        "typeName": "Grass"
-      }
-    },
-    {
-      "type": {
-        "typeName": "Electric"
-      }
-    }
-  ],
-  "pokemonStrengths": [
     {
       "type": {
         "typeName": "Fire"
@@ -82,7 +90,39 @@ Content-Type: application/json
     },
     {
       "type": {
-        "typeName": "Rock"
+        "typeName": "Flying"
+      }
+    },
+        {
+      "type": {
+        "typeName": "Psychic"
+      }
+    }
+  ],
+  "pokemonStrengths": [
+    {
+      "type": {
+        "typeName": "Grass"
+      }
+    },
+    {
+      "type": {
+        "typeName": "Fighting"
+      }
+    },
+        {
+      "type": {
+        "typeName": "Poison"
+      }
+    },
+            {
+      "type": {
+        "typeName": "Fairy"
+      }
+    },
+            {
+      "type": {
+        "typeName": "Bug"
       }
     }
   ]

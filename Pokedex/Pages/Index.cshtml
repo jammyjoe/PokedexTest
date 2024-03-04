@@ -8,16 +8,63 @@
 <h1>Pokedex</h1>
 <p>Welcome to the virtual pokedex</p>
 
-@if (Model.Pokemons != null && Model.Pokemons.Count() > 0)
+@if (Model.Pokemons != null && Model.Pokemons.Any())
 {
-    @*     <ul class="p-6 mx-auto bg-white rounded-xl shadow-lg d-grid col-3">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @foreach (var pokemon in Model.Pokemons)
         {
-            <li class="text-2xl align-content-around p-5">@pokemon.Id . @pokemon.Name</li>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">@pokemon.Name</h2>
+
+                <!-- Basic Info -->
+                <div class="text-sm text-gray-600 mb-2">
+                    <strong>Type:</strong>
+                    @if (pokemon.Type1 != null)
+                    {
+                        @pokemon.Type1.TypeName
+                    }
+
+                    @if (pokemon.Type2 != null)
+                    {
+                        <span> / @pokemon.Type2.TypeName</span>
+                    }
+                </div>
+
+                <div class="text-sm text-gray-600 mb-2">
+                    <strong>Strengths:</strong>
+                    @if (pokemon.PokemonStrengths != null && pokemon.PokemonStrengths.Any())
+                    {
+                        @foreach (var strength in pokemon.PokemonStrengths)
+                        {
+                            @if (strength.Type != null && strength.Type.TypeName != null)
+                            {
+                                <div>@strength.Type.TypeName</div>
+                            }
+                        }
+                    }
+                </div>
+
+                <div class="text-sm text-gray-600 mb-2">
+                    <strong>Weaknesses:</strong>
+                    @if (pokemon.PokemonWeaknesses != null && pokemon.PokemonWeaknesses.Any())
+                    {
+                        @foreach (var weakness in pokemon.PokemonWeaknesses)
+                        {
+                            @if (weakness.Type != null && weakness.Type.TypeName != null)
+                            {
+                                <div>@weakness.Type.TypeName</div>
+                            }
+                        }
+                    }
+                </div>
+
+                <!-- You can add more details or images here if needed -->
+            </div>
         }
-    </ul> *@
+    </div>
 }
 else
 {
-    <div>No Pokemons Found...</div>
+    <div class="text-center text-gray-500">No Pokemons Found...</div>
 }
+

@@ -12,9 +12,7 @@ namespace PokedexAPI.Models
         [Column("type_id")]
         public int? TypeId { get; set; }
 
-        [JsonIgnore]
         public virtual Pokemon? Pokemon { get; set; }
-        [JsonIgnore]
         public virtual PokemonType? Type { get; set; }
     }
 }

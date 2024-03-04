@@ -17,7 +17,7 @@ namespace PokedexAPI.Pages
         public IEnumerable<Pokemon> Pokemons { get; set; }
         public async Task OnGetAsync()
         {
-            //Pokemons = await _repository.GetPokemons();
+            Pokemons = await _repository.GetPokemons();
         }
     }
 }
