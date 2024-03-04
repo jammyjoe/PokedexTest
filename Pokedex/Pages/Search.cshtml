@@ -15,16 +15,32 @@
 
         @if (Model.Pokemon != null)
         {
-@*             <div>
-                <p>ID: @Model.Pokemon.Id</p>
+             <div>
                 <p>Name: @Model.Pokemon.Name</p>
-                <p>Type: @Model.Pokemon.Type1</p>
+                <p>Type: @Model.Pokemon.Type1.TypeName</p>
                 @if (Model.Pokemon.Type2 != null)
                 {
-                    <p>Type: @Model.Pokemon.Type2</p>
+                    <p>Type: @Model.Pokemon.Type2.TypeName</p>
                 }
-            </div> *@
+                <br/>
+                <p class="font-bold">Strengths:</p>
+                <ul>
+                    @foreach (var strength in Model.Pokemon.PokemonStrengths)
+                    {
+                        <li>@strength.Type.TypeName</li>
+                    }
+                </ul>
+                <br/>
+                <p class="font-bold">Weaknesses:</p>
+                <ul>
+                    @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
+                    {
+                        <li>@weakness.Type.TypeName</li>
+                    }
+                </ul>
+            </div> 
         }
+        <br/>
         <div>@Model.Message</div>
     </form>
 </div>

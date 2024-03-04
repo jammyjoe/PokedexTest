@@ -70,6 +70,10 @@ namespace Pokedex.Repository
             return await _context.Pokemons
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
+                .Include(p => p.PokemonWeaknesses)
+                .ThenInclude(pw => pw.Type)
+                .Include(p => p.PokemonStrengths)
+                .ThenInclude(ps => ps.Type)
                 .FirstOrDefaultAsync(p => p.Name == name);
         }
 

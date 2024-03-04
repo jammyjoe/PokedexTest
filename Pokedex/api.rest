@@ -11,14 +11,26 @@ POST https://localhost:7224/api/pokemon/3
 Content-Type: application/json
 
 {
-  "name": "Charizard",
+  "name": "Venasaur",
   "type1": {
-    "typeName": "Fire"
+    "typeName": "Grass"
   },
   "type2": {
-    "typeName": "Flying"
+    "typeName": "Poison"
   },
   "pokemonWeaknesses": [
+    {
+      "type": {
+        "typeName": "Fire"
+      }
+    },
+    {
+      "type": {
+        "typeName": "Poison"
+      }
+    }
+  ],
+  "pokemonStrengths": [
     {
       "type": {
         "typeName": "Water"
@@ -26,23 +38,12 @@ Content-Type: application/json
     },
     {
       "type": {
-        "typeName": "Electric"
-      }
-    }
-  ],
-  "pokemonStrengths": [
-    {
-      "type": {
-        "typeName": "Grass"
-      }
-    },
-    {
-      "type": {
-        "typeName": "Bug"
+        "typeName": "Pyschic"
       }
     }
   ]
 }
+
 
 ###
 
