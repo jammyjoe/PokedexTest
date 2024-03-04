@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\repos\\PokedexTest\\Pokedex\\wwwroot\\images\\pokeball.png",
+      "PackagePath": "staticwebassets\\images\\pokeball.png"
+    },
+    {
       "Id": "C:\\repos\\PokedexTest\\Pokedex\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
