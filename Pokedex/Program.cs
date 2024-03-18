@@ -1,54 +1,62 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Pokedex.Repository;
-using Pokedex.RepositoryInterface;
+using Microsoft.OpenApi.Models;
+using PokedexAPI.Repository;
+using PokedexAPI.RepositoryInterface;
 using PokedexAPI.Models;
 
-namespace Pokedex
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+builder.Services.AddResponseCaching(options => options.MaximumBodySize = 1024);
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
+builder.Services.AddDbContext<PokedexContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+// Configure CORS
+builder.Services.AddCors(options =>
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:7132", "http://localhost:5187")
+            .AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
-			// Add services to the container.
-			builder.Services.AddControllers();
-			builder.Services.AddRazorPages();
-			builder.Services.AddResponseCaching(x => x.MaximumBodySize = 1024);
-			builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-			builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
+// Configure Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pokedex API", Version = "v1" });
+});
 
-			builder.Services.AddDbContext<PokedexContext>(options =>
-				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-			//builder.Services.AddEndpointsApiExplorer();
-			//builder.Services.AddSwaggerGen();
+var app = builder.Build();
 
-			var app = builder.Build();
-
-			// Configure the HTTP request pipeline.
-			//if (app.Environment.IsDevelopment())
-			//{
-			//	app.UseSwagger();
-			//	app.UseSwaggerUI();
-			//}
-
-            app.UseDefaultFiles();
-
-            app.UseStaticFiles();
-
-			app.UseHttpsRedirection();
-
-			app.UseAuthorization();
-
-			app.UseResponseCaching();
-
-            app.MapRazorPages();
-
-			app.MapControllers();
-
-			app.Run();
-		}
-	}
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pokedex API v1"));
 }
+
+app.UseCors(); // Use CORS before routing
+
+app.UseRouting();
+
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseResponseCaching();
+
+app.MapRazorPages();
+app.MapControllers();
+
+app.Run();

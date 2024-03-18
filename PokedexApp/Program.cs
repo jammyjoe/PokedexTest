@@ -1,7 +1,12 @@
+using PokedexAPI.Repository;
+using PokedexAPI.RepositoryInterface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
 
 var app = builder.Build();
 
@@ -19,10 +24,19 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
+
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapRazorPages();
+//});
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

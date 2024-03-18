@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B+XRcSGhFE5pua8/bgkC1ttSYR+YYGsfW+sJKxnB6TxRYT7LfXXAHS4INbbPOj6j1bQF6XSuZ10vFrLLKuYUWg==",
+  "dgSpecHash": "4LTN6MxYJek+nQIEezrE0CvqwrQPPPsSz4KHuxsFhTe9LPh/10UPOzby6mhEc5fgSKMRZYqc+JA3nx9zNT1L+Q==",
   "success": true,
   "projectFilePath": "C:\\repos\\PokedexTest\\Pokedex\\PokedexAPI.csproj",
   "expectedPackageFiles": [
@@ -34,8 +34,12 @@
     "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\MunayemJ\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\MunayemJ\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\MunayemJ\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\MunayemJ\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",

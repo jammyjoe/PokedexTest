@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\images\\pokeball.png",
+      "PackagePath": "staticwebassets\\images\\pokeball.png"
+    },
+    {
       "Id": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -239,6 +243,14 @@
     {
       "Id": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\site.css",
+      "PackagePath": "staticwebassets\\site.css"
+    },
+    {
+      "Id": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\site.src.css",
+      "PackagePath": "staticwebassets\\site.src.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PokedexApp.Microsoft.AspNetCore.StaticWebAssets.props",

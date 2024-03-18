@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Pokedex.DTOs;
+﻿using Pokedex.DTOs;
 using PokedexAPI.Models;
 
-namespace Pokedex.RepositoryInterface
+namespace PokedexAPI.RepositoryInterface;
+
+public interface IPokemonRepository
 {
-    public interface IPokemonRepository
-    {
-        Task<ICollection<Pokemon>> GetPokemons();
-        //Task<string> GetTypeById(int typeId);
-        //Task<string> GetPokemonType(int pokeId);
-        Task<Pokemon> GetPokemon(int id);
-        Task<Pokemon> GetPokemon(string name);
-        Task<Pokemon> CreatePokemon(PokemonDto pokemon);
-        Task<bool> PokemonTypeExists(string typeName);
-        Task<bool> UpdatePokemon(int id, PokemonDto updatedPokemonDto);
-        Task<bool> UpdateType(PokemonDto updatePokemonDto, Pokemon existingPokemon);
-        Task<bool> PokemonExists(int id);
-        Task<bool> PokemonExists(string name);
-        Task<bool> DeletePokemon(Pokemon pokemon);
-        Task<bool> SavePokemon();
-    }
+    Task<ICollection<Pokemon>> GetPokemons();
+    //Task<string> GetTypeById(int typeId);
+    //Task<string> GetPokemonType(int pokeId);
+    Task<Pokemon> GetPokemon(int id);
+    Task<Pokemon> GetPokemon(string name);
+    Task<Pokemon> CreatePokemon(PokemonDto pokemon);
+    Task<bool> PokemonTypeExists(string typeName);
+    Task<bool> UpdatePokemon(int id, PokemonDto updatedPokemonDto);
+    Task<bool> UpdateType(PokemonDto updatePokemonDto, Pokemon existingPokemon);
+    Task<bool> PokemonExists(int id);
+    Task<bool> PokemonExists(string name);
+    Task<bool> DeletePokemon(Pokemon pokemon);
+    Task<bool> SavePokemon();
 }

@@ -101,7 +101,11 @@ C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.IdentityModel.Logging
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\repos\PokedexTest\PokedexApp\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
@@ -128,8 +132,8 @@ C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.GeneratedMSBuildEdit
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.AssemblyInfoInputs.cache
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.AssemblyInfo.cs
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.csproj.CoreCompileInputs.cache
-C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.MvcApplicationPartsAssemblyInfo.cs
-C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.MvcApplicationPartsAssemblyInfo.cache
+C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.RazorAssemblyInfo.cache
+C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.RazorAssemblyInfo.cs
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.sourcelink.json
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\staticwebassets.build.json
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\staticwebassets.development.json

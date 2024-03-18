@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fAGgsHSmU/JbgLaGmsbo73mIQROn/oKwhB06C9k7GB0=",
+  "Hash": "4c0I2ElZWCVgJI93eylHRh0TRzCuzeZDniPjYoF+YkY=",
   "Source": "PokedexApp",
   "BasePath": "_content/PokedexApp",
   "Mode": "Default",
@@ -1271,6 +1271,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\images\\pokeball.png",
+      "SourceId": "PokedexApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\",
+      "BasePath": "_content/PokedexApp",
+      "RelativePath": "images/pokeball.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\pokeball.png"
+    },
+    {
       "Identity": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\js\\site.js",
       "SourceId": "PokedexApp",
       "SourceType": "Discovered",
@@ -2371,6 +2390,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\site.css",
+      "SourceId": "PokedexApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\",
+      "BasePath": "_content/PokedexApp",
+      "RelativePath": "site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\site.css"
+    },
+    {
+      "Identity": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\site.src.css",
+      "SourceId": "PokedexApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\repos\\PokedexTest\\PokedexApp\\wwwroot\\",
+      "BasePath": "_content/PokedexApp",
+      "RelativePath": "site.src.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\site.src.css"
     }
   ]
 }
