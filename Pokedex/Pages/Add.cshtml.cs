@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Pokedex.DTOs;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.DTOs;
 using PokedexAPI.Models;
+using PokedexAPI.ViewModels;
 
 public class AddModel : PageModel
 {
@@ -11,25 +14,31 @@ public class AddModel : PageModel
     {
         _repository = repository;
     }
-    [BindProperty] public Pokemon Pokemon { get; set; }
+    [BindProperty] public string Name { get; set; }
+    [BindProperty] public string Type1 { get; set; }
+    [BindProperty] public string Type2 { get; set; }
+     public PokemonDto Pokemon { get; set; }
+    [BindProperty] public AddViewModel Add { get; set; } = new AddViewModel();
+
+
 
     public void OnGet()
     {
         // Optional: You can perform any necessary setup logic when the page is initially requested
     }
 
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(AddViewModel add)
     {
-        // Check if the model is valid based on data annotations and other validations
         if (!ModelState.IsValid)
         {
-            return Page(); // Return to the form with validation errors
+            return Page();
         }
 
-        // TODO: Add logic to save the Pokemon to the database or perform any other actions
+        // Call the repository method to create the Pokemon
+        await _repository.CreatePokemon(Pokemon);
 
-        // Optional: Redirect to a different page after successfully adding the Pokemon
-        return RedirectToPage("/Index");
+        // Redirect to a different page after successfully adding the Pokemon
+        return RedirectToPage("/Home");
     }
 }
 

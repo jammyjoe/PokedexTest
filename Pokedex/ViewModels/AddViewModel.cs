@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using PokedexAPI.DTOs;
 
 namespace PokedexAPI.ViewModels;
-public class AddViewModel : Controller
+public class AddViewModel
 {
-    public IActionResult Index()
-    {
-        return View();
-    }
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    public string Type1 { get; set; }
+    public string Type2 { get; set; }
+
 }
