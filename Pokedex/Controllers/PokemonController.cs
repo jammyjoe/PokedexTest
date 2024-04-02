@@ -25,9 +25,6 @@ namespace Pokedex.Controllers
             _mapper = mapper;
         }
 
-        //Controller Methods
-
-
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<Pokemon>> GetPokemons()
@@ -92,15 +89,12 @@ namespace Pokedex.Controllers
             try
             {
                 var createdPokemon = await _pokemonRepository.CreatePokemon(pokemonCreate);
-
-                // Map the created Pokemon entity back to DTO for response
                 var createdPokemonDto = _mapper.Map<PokemonDto>(createdPokemon);
 
                 return CreatedAtAction(nameof(GetPokemon), new { id = createdPokemonDto.Id }, createdPokemonDto);
             }
             catch (Exception ex)
             {
-                // Handle exceptions or errors during Pokemon creation
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
@@ -152,32 +146,5 @@ namespace Pokedex.Controllers
             }
             return NoContent();
         }
-
-        //Converst TypeId to TypeName
-        //[HttpGet("type/{typeId:int}")]
-        //[ProducesResponseType(200)]
-        //public async Task<ActionResult<PokemonType>> GetType(int typeId)
-        //{
-        //    var type = _mapper.Map<string>(await _pokemonRepository.GetTypeById(typeId));
-
-        //    if (!ModelState.IsValid)
-        //        return NoContent();
-
-        //    return Ok(type);
-        //}
-
-        //Converts PokeId to TypeName
-        //[HttpGet("pokemontype/{typeId:int}")]
-        //[ProducesResponseType(200)]
-        //public async Task<ActionResult<PokemonType>> GetPokemonType(int typeId)
-        //{
-        //    var type = _mapper.Map<string>(await _pokemonRepository.GetPokemonType(typeId));
-
-        //    if (!ModelState.IsValid)
-        //        return NoContent();
-
-        //    return Ok(type);
-        //}
-
     }
 }

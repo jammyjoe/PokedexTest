@@ -65,8 +65,8 @@ namespace Pokedex.Repository
 
             var type1Exists = await PokemonTypeExists(pokemonDto.Type1.TypeName);
             if (!type1Exists)
-            {
-                // throw new Exception("Invalid Type1 specified");
+            { 
+                throw new Exception("Invalid Type specified");
             }
             else
             {
@@ -80,8 +80,7 @@ namespace Pokedex.Repository
                 var type2Exists = await PokemonTypeExists(pokemonDto.Type2.TypeName);
                 if (!type2Exists)
                 {
-                    // Handle error if the provided Type2 does not exist
-                    // Similar to the handling for Type1
+                    throw new Exception("Invalid Type specified");
                 }
                 else
                 {
