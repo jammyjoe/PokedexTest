@@ -21,6 +21,7 @@ namespace Pokedex.Mapping
                 .ForMember(dest => dest.PokemonStrengths, opt => opt.MapFrom(src => src.PokemonStrengths));
 
             CreateMap<PokemonType, PokemonTypeDto>();
+			CreateMap<PokemonTypeDto, PokemonType>();
             CreateMap<PokemonWeakness, PokemonWeaknessDto>();
             CreateMap<PokemonStrength, PokemonStrengthDto>();
         }

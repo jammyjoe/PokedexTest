@@ -145,3 +145,10 @@ C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\refint\PokedexApp.dll
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.pdb
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.genruntimeconfig.cache
 C:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\ref\PokedexApp.dll
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.csproj.AssemblyReference.cache
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.AssemblyInfoInputs.cache
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.AssemblyInfo.cs
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.csproj.CoreCompileInputs.cache
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.MvcApplicationPartsAssemblyInfo.cache
+D:\repos\PokedexTest\PokedexApp\obj\Debug\net8.0\PokedexApp.sourcelink.json
