@@ -19,28 +19,6 @@ namespace Pokedex.Repository
             _context = context;
         }
 
-        //Getting Type Id -> TypeName (Could be useful method later)
-        //public async Task<string> GetTypeById(int typeId)
-        //{
-        //    return await _context.PokemonTypes
-        //        .Where(t => t.Id == typeId)
-        //        .Select(t => t.TypeName)
-        //        .FirstOrDefaultAsync();
-        //}
-
-        //public async Task<string> GetPokemonType(int pokeId)
-        //{
-        //    var typeID = await _context.Pokemons
-        //        .Where(p => p.Id == pokeId)
-        //        .Select(p => p.Type1Id)
-        //        .FirstOrDefaultAsync();
-
-        //    return await _context.PokemonTypes
-        //        .Where(t => t.Id == typeID)
-        //        .Select(t => t.TypeName)
-        //        .FirstOrDefaultAsync();
-        //}
-
         public async Task<ICollection<Pokemon>> GetPokemons()
         {
             return await _context.Pokemons
@@ -87,8 +65,8 @@ namespace Pokedex.Repository
 
             var type1Exists = await PokemonTypeExists(pokemonDto.Type1.TypeName);
             if (!type1Exists)
-            {
-                // throw new Exception("Invalid Type1 specified");
+            { 
+                throw new Exception("Invalid Type specified");
             }
             else
             {
@@ -102,8 +80,7 @@ namespace Pokedex.Repository
                 var type2Exists = await PokemonTypeExists(pokemonDto.Type2.TypeName);
                 if (!type2Exists)
                 {
-                    // Handle error if the provided Type2 does not exist
-                    // Similar to the handling for Type1
+                    throw new Exception("Invalid Type specified");
                 }
                 else
                 {
@@ -191,12 +168,6 @@ namespace Pokedex.Repository
             _context.Remove(pokemon);
             return await SavePokemon();
         }
-
-        //public async Task<bool> UpdatePokemon(Pokemon pokemon)
-        //{
-        //    _context.Update(pokemon);
-        //    return await SavePokemon();
-        //}
 
         public async Task<bool> UpdatePokemon(int id, PokemonDto updatedPokemonDto)
         {
