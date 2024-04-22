@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Pokedex.DTOs;
 using PokedexAPI.DTOs;
 using PokedexAPI.Models;
 using PokedexAPI.RepositoryInterface;
@@ -33,5 +34,24 @@ public class TypeController : ControllerBase
             return NoContent();
 
         return Ok(types);
+    }
+
+    [HttpGet("{typeName}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+
+    public async Task<ActionResult<Type>> GetPokemonsByType(string typeName)
+    {
+        var pokemons = await _typeRepository.GetPokemonsByType(typeName);
+
+        if (pokemons == null || pokemons.Count == 0)
+        {
+            return NotFound();
+        }
+
+        // Map the list of Pokemons to a list of PokemonDto objects
+        var pokemonDtos = _mapper.Map<List<PokemonDto>>(pokemons);
+
+        return Ok(pokemonDtos);
     }
 }

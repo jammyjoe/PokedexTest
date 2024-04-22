@@ -139,3 +139,8 @@ GET https://localhost:7224/api/pokemon/pokemontype/2
 ###
 
 GET https://localhost:7224/api/type
+
+###
+
+GET https://localhost:7224/api/type/water
+
