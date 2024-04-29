@@ -1,7 +1,6 @@
 {
   "name": "pokedex",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "css": "npx tailwindcss -i ./wwwroot/site.src.css -o ./wwwroot/site.css -w"
@@ -10,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.3"
   },
   "-vs-binding": {
     "ProjectOpened": [
@@ -19,5 +18,6 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0"
-  }
+  },
+  "description": ""
 }
