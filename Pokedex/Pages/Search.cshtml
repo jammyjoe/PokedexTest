@@ -5,53 +5,80 @@
     ViewBag.Title = "Search Page";
 }
 
-<div class="w-96 mx-auto bg-white p-4">
-    <h1 class="text-2xl font-bold mb-4">Search Pokemon</h1>
 
-    <form method="post" class="mb-4">
-        <label asp-for="Search.Name" class="block font-semibold mb-2">Name</label>
-        <input asp-for="Search.Name" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
-        <span asp-validation-for="Search.Name" class="text-red-500"></span>
+<div class="w-100 mx-4 bg-white rounded-2 p-4">
 
-        <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 mt-4" type="submit">Search</button>
-    </form>
-
-    @if (Model.Pokemon != null)
-    {
-        <div class="bg-gray-100 p-4 rounded-md mt-4">
-            <p><strong class="text-lg font-semibold">Name:</strong> @Model.Pokemon.Name</p>
-            <p>
-                <strong class="text-lg font-semibold">Type:</strong> @Model.Pokemon.Type1.TypeName
-                @if (Model.Pokemon.Type2 != null)
-                {
-                    <span> / @Model.Pokemon.Type2.TypeName</span>
-                }
-            </p>
-
-            <div class="mt-4">
-                <p class="text-lg font-semibold">Strengths:</p>
-                <ul>
-                    @foreach (var strength in Model.Pokemon.PokemonStrengths)
-                    { 
-                        <li>@strength.Type.TypeName</li>
-                    }
-                </ul>
-            </div>
-
-            <div class="mt-4">
-                <p class="text-lg font-semibold">Weaknesses:</p>
-                <ul>
-                    @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
+    <div class="flex justify-between">
+        <h1 class="text-2xl font-bold mb-4">Search Pokemon</h1>
+        <div class="w-1/3 grid items-center justify-end">
+            <div class="filter-container">
+                <button id="filterButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="toggleFilter()">
+                    Filter
+                </button>
+                <div id="filterDropdown" class="mt-2 bg-white border rounded-lg shadow-md hidden grid grid-cols-9 gap-4">
+                    @foreach (var type in Model.PokemonTypes)
                     {
-                        <li>@weakness.Type.TypeName</li>
+                        <label class="col-span-2 pl-4 py-2 cursor-pointer">
+                            <input type="checkbox" class="mr-2 leading-tight">
+                            <span class="text-sm">@type.TypeName</span>
+                        </label>
                     }
-                </ul>
+                </div>
             </div>
         </div>
-    }
-
-    else if (!string.IsNullOrEmpty(Model.Message))
-    {
-        <div class="mt-4 text-red-500">@Model.Message</div>
-    }
+    </div>
 </div>
+    </div>
+<form method="post" class="mb-4">
+    <label asp-for="Search.Name" class="block font-semibold mb-2">Name</label>
+    <input asp-for="Search.Name" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+    <span asp-validation-for="Search.Name" class="text-red-500"></span>
+
+    <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 mt-4" type="submit">Search</button>
+</form>
+
+@if (Model.Pokemon != null)
+{
+    <div class="bg-gray-100 p-4 rounded-md mt-4">
+        <p><strong class="text-lg font-semibold">Name:</strong> @Model.Pokemon.Name</p>
+        <p>
+            <strong class="text-lg font-semibold">Type:</strong> @Model.Pokemon.Type1.TypeName
+            @if (Model.Pokemon.Type2 != null)
+            {
+                <span> / @Model.Pokemon.Type2.TypeName</span>
+            }
+        </p>
+
+        <div class="mt-4">
+            <p class="text-lg font-semibold">Strengths:</p>
+            <ul>
+                @foreach (var strength in Model.Pokemon.PokemonStrengths)
+                {
+                    <li>@strength.Type.TypeName</li>
+                }
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <p class="text-lg font-semibold">Weaknesses:</p>
+            <ul>
+                @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
+                {
+                    <li>@weakness.Type.TypeName</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+else if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="mt-4 text-red-500">@Model.Message</div>
+}
+
+<script>
+    function toggleFilter() {
+        const filterDropdown = document.getElementById('filterDropdown');
+        filterDropdown.classList.toggle('hidden');
+    }
+</script>

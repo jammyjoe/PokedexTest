@@ -1,25 +1,36 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pokedex.RepositoryInterface;
+using PokedexAPI.DTOs;
 using PokedexAPI.Models;
+using PokedexAPI.RepositoryInterface;
 using PokedexAPI.ViewModels;
 
 
 public class SearchModel : PageModel
 {
-    private readonly IPokemonRepository _repository;
+    private readonly IPokemonRepository _pokemonrepository;
+    private readonly ITypeRepository _typeRepository;
 
-    public SearchModel(IPokemonRepository repository)
+    public SearchModel(IPokemonRepository pokemonrepository, ITypeRepository typeRepository)
     {
-        _repository = repository;
+        _pokemonrepository = pokemonrepository;
+        _typeRepository = typeRepository;
     }
 
     public Pokemon Pokemon { get; set; }
+    public IEnumerable<PokemonType> PokemonTypes { get; set; }
 
     public string Message { get; set; }
 
     [BindProperty]
     public SearchViewModel Search { get; set; } = new SearchViewModel();
+
+    public async Task OnGetAsync()
+    {
+        // Retrieve the list of Pokemon types from the repository
+        PokemonTypes = await _typeRepository.GetTypes();
+    }
 
     public async Task OnPostAsync()
     {
@@ -30,13 +41,13 @@ public class SearchModel : PageModel
             return;
         }
 
-        if (!await _repository.PokemonExists(Search.Name))
+        if (!await _pokemonrepository.PokemonExists(Search.Name))
         {
             Message = "This Pokemon does not exist";
             return;
         }
 
-        Pokemon = await _repository.GetPokemon(Search.Name);
+        Pokemon = await _pokemonrepository.GetPokemon(Search.Name);
         ModelState.Clear();
         Message = "Successfully retrieved Pokemon";
     }
