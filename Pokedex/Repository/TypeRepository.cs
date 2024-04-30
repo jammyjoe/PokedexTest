@@ -21,24 +21,24 @@ public class TypeRepository : ITypeRepository
         return await _context.PokemonTypes.ToListAsync();
     }
 
-    public async Task<List<Pokemon>> GetPokemonsByType(string typeName)
+    public async Task<List<Pokemon>> GetPokemonsByType(List <string> typeNames)
     {
-        var pokemonType = await _context.PokemonTypes.FirstOrDefaultAsync(t => t.TypeName == typeName);
-
-        if (pokemonType == null)
+        if (typeNames == null || !typeNames.Any())
         {
-            //return error this type doesnt exist
+            // Throw an exception if no type names are provided
+            throw new ArgumentException("At least one type name must be provided.", nameof(typeNames));
         }
 
+        // Fetch Pokemons where either Type1 or Type2 name matches any of the provided type names
         var pokemons = await _context.Pokemons
-               .Include(p => p.Type1)
-               .Include(p => p.Type2)
-               .Include(p => p.PokemonStrengths)
-                    .ThenInclude(ps => ps.Type)
-               .Include(p => p.PokemonWeaknesses)
-                    .ThenInclude(pw => pw.Type)
-               .Where(p => p.Type1.TypeName == typeName || p.Type2.TypeName == typeName)
-               .ToListAsync();
+            .Include(p => p.Type1)
+            .Include(p => p.Type2)
+            .Include(p => p.PokemonStrengths)
+                .ThenInclude(ps => ps.Type)
+            .Include(p => p.PokemonWeaknesses)
+                .ThenInclude(pw => pw.Type)
+            .Where(p => typeNames.Contains(p.Type1.TypeName) || typeNames.Contains(p.Type2.TypeName))
+            .ToListAsync();
 
         return pokemons;
     }

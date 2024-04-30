@@ -16,13 +16,18 @@
                     Filter
                 </button>
                 <div id="filterDropdown" class="mt-2 bg-white border rounded-lg shadow-md hidden grid grid-cols-9 gap-4">
+                    @*                     <form method="get" class="mb-4" asp-page-handler="ApplyFilter">
                     @foreach (var type in Model.PokemonTypes)
                     {
-                        <label class="col-span-2 pl-4 py-2 cursor-pointer">
-                            <input type="checkbox" class="mr-2 leading-tight">
-                            <span class="text-sm">@type.TypeName</span>
-                        </label>
+                    <label class="col-span-2 pl-4 py-2 cursor-pointer">
+                    <input type="checkbox" name="selectedTypes" value="@type.TypeName" class="mr-2 leading-tight">
+                    <span class="text-sm">@type.TypeName</span>
+                    </label>
                     }
+                    <button class="col-span-9 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded" type="submit">
+                    Apply
+                    </button>
+                    </form> *@
                 </div>
             </div>
         </div>
@@ -36,36 +41,90 @@
         <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 mt-4" type="submit">Search</button>
     </form>
 
+    @if (Model.FilteredPokemon != null && Model.FilteredPokemon.Any())
+    {
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            @foreach (var pokemon in Model.FilteredPokemon)
+            {
+                <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
+                    <h2 class="text-2xl font-bold mb-4 text-center">@pokemon.Name</h2>
+
+                    <!-- Basic Info -->
+                    <div class="text-sm text-gray-600 mb-4">
+                        <strong>Type:</strong>
+                        @pokemon.Type1.TypeName
+                        @if (pokemon.Type2 != null)
+                        {
+                            <span> / @pokemon.Type2.TypeName</span>
+                        }
+                    </div>
+
+                    <!-- Strengths Section -->
+                    <div class="text-sm text-gray-600 mb-4">
+                        <strong>Strengths:</strong>
+                        @if (pokemon.PokemonStrengths != null && pokemon.PokemonStrengths.Any())
+                        {
+                            @foreach (var strength in pokemon.PokemonStrengths)
+                            {
+                                @if (strength.Type != null && strength.Type.TypeName != null)
+                                {
+                                    <div>@strength.Type.TypeName</div>
+                                }
+                            }
+                        }
+                    </div>
+
+                    <!-- Weaknesses Section -->
+                    <div class="text-sm text-gray-600">
+                        <strong>Weaknesses:</strong>
+                        @if (pokemon.PokemonWeaknesses != null && pokemon.PokemonWeaknesses.Any())
+                        {
+                            @foreach (var weakness in pokemon.PokemonWeaknesses)
+                            {
+                                @if (weakness.Type != null && weakness.Type.TypeName != null)
+                                {
+                                    <div>@weakness.Type.TypeName</div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
     @if (Model.Pokemon != null)
     {
-        <div class="bg-gray-100 p-4 rounded-md mt-4">
-            <p><strong class="text-lg font-semibold">Name:</strong> @Model.Pokemon.Name</p>
-            <p>
-                <strong class="text-lg font-semibold">Type:</strong> @Model.Pokemon.Type1.TypeName
-                @if (Model.Pokemon.Type2 != null)
-                {
-                    <span> / @Model.Pokemon.Type2.TypeName</span>
-                }
-            </p>
-
-            <div class="mt-4">
-                <p class="text-lg font-semibold">Strengths:</p>
-                <ul>
-                    @foreach (var strength in Model.Pokemon.PokemonStrengths)
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
+                <h2 class="text-2xl font-bold mb-4 text-left">@Model.Pokemon.Name</h2>
+                <div class="text-sm text-gray-600 mb-4">
+                    <strong>Type:</strong>
+                    @Model.Pokemon.Type1.TypeName
+                    @if (Model.Pokemon.Type2 != null)
                     {
-                        <li>@strength.Type.TypeName</li>
+                        <span> / @Model.Pokemon.Type2.TypeName</span>
                     }
-                </ul>
-            </div>
+                </div>
 
-            <div class="mt-4">
-                <p class="text-lg font-semibold">Weaknesses:</p>
-                <ul>
-                    @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
-                    {
-                        <li>@weakness.Type.TypeName</li>
-                    }
-                </ul>
+                <div class="text-sm text-gray-600 mb-4">
+                    <strong>Strengths:</strong>
+                    <ul>
+                        @foreach (var strength in Model.Pokemon.PokemonStrengths)
+                        {
+                            <li>@strength.Type.TypeName</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="text-sm text-gray-600">
+                    <strong>Weaknesses:</strong>
+                    <ul>
+                        @foreach (var weakness in Model.Pokemon.PokemonWeaknesses)
+                        {
+                            <li>@weakness.Type.TypeName</li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     }
@@ -82,3 +141,4 @@
         filterDropdown.classList.toggle('hidden');
     }
 </script>
+

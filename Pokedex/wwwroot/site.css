@@ -647,6 +647,10 @@ button:hover {
   grid-column: span 2 / span 2;
 }
 
+.col-span-9 {
+  grid-column: span 9 / span 9;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -859,6 +863,10 @@ button:hover {
 
 .pl-4 {
   padding-left: 1rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {

@@ -40,7 +40,7 @@ public class TypeController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
 
-    public async Task<ActionResult<Type>> GetPokemonsByType(string typeName)
+    public async Task<ActionResult<Type>> GetPokemonsByType(List <string> typeName)
     {
         var pokemons = await _typeRepository.GetPokemonsByType(typeName);
 
