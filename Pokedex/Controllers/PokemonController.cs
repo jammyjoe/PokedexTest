@@ -10,7 +10,7 @@ using PokedexAPI.Models;
 namespace Pokedex.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
     public class PokemonController : ControllerBase
     {
@@ -37,22 +37,22 @@ namespace Pokedex.Controllers
             return Ok(pokemons);
         }
 
-        [HttpGet("{id:int}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
+        //[HttpGet("{id:int}")]
+        //[ProducesResponseType(200)]
+        //[ProducesResponseType(400)]
 
-        public async Task<ActionResult<Pokemon>> GetPokemon(int id)
-        {
-            if (!(await _pokemonRepository.PokemonExists(id)))
-                return NotFound("This pokemon does not exist");
+        //public async Task<ActionResult<Pokemon>> GetPokemon(int id)
+        //{
+        //    if (!(await _pokemonRepository.PokemonExists(id)))
+        //        return NotFound("This pokemon does not exist");
 
-            var pokemon = _mapper.Map<PokemonDto>(await _pokemonRepository.GetPokemon(id));
+        //    var pokemon = _mapper.Map<PokemonDto>(await _pokemonRepository.GetPokemon(id));
 
-            if (!ModelState.IsValid)
-                return NoContent();
+        //    if (!ModelState.IsValid)
+        //        return NoContent();
 
-            return Ok(pokemon);
-        }
+        //    return Ok(pokemon);
+        //}
 
         [HttpGet("{name}")]
         [ProducesResponseType(200)]

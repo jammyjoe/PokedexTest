@@ -1,13 +1,13 @@
 
-GET https://localhost:7224/api/pokemon
+GET https://localhost:7224/pokemon
 
 ###
 
-GET https://localhost:7224/api/pokemon/5
+GET https://localhost:7224/pokemon/5
 
 ###
 
-POST https://localhost:7224/api/pokemon/3
+POST https://localhost:7224/pokemon/3
 Content-Type: application/json
 
 {
@@ -67,11 +67,11 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/api/pokemon/13
+DELETE https://localhost:7224/pokemon/13
 
 ###
 
-PUT https://localhost:7224/api/pokemon/5
+PUT https://localhost:7224/pokemon/5
 Content-Type: application/json
 
 {
@@ -130,17 +130,17 @@ Content-Type: application/json
 
 ###
 
-GET https://localhost:7224/api/pokemon/type/8
+GET https://localhost:7224/pokemon/type/8
 
 ###
 
-GET https://localhost:7224/api/pokemon/pokemontype/2
+GET https://localhost:7224/pokemon/pokemontype/2
 
 ###
 
-GET https://localhost:7224/api/type
+GET https://localhost:7224/type
 
 ###
 
-GET https://localhost:7224/api/type/water
+GET https://localhost:7224/type/water
 

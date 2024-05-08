@@ -9,7 +9,7 @@ using PokedexAPI.RepositoryInterface;
 namespace Pokedex.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
 public class TypeController : ControllerBase
 {

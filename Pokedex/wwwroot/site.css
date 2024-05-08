@@ -651,6 +651,18 @@ button:hover {
   grid-column: span 9 / span 9;
 }
 
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -692,6 +704,14 @@ button:hover {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
 }
 
 .block {
@@ -736,6 +756,10 @@ button:hover {
 
 .grid-cols-9 {
   grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .items-center {
@@ -933,6 +957,11 @@ button:hover {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .shadow-lg {

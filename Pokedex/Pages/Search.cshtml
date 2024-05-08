@@ -15,18 +15,18 @@
                 <button id="filterButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="toggleFilter()">
                     Filter
                 </button>
-                <div id="filterDropdown" class="mt-2 bg-white border rounded-lg shadow-md hidden grid grid-cols-9 gap-4">
-                    @*                     <form method="get" class="mb-4" asp-page-handler="ApplyFilter">
-                    @foreach (var type in Model.PokemonTypes)
-                    {
-                    <label class="col-span-2 pl-4 py-2 cursor-pointer">
-                    <input type="checkbox" name="selectedTypes" value="@type.TypeName" class="mr-2 leading-tight">
-                    <span class="text-sm">@type.TypeName</span>
-                    </label>
-                    }
-                    <button class="col-span-9 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded" type="submit">
-                    Apply
-                    </button>
+                <div id="filterDropdown" class="mt-2 bg-white border rounded-lg shadow-md hidden grid grid-cols-1 gap-4">
+@*                    TECH DEBT <form method="get" class="mb-4" asp-page-handler="ApplyFilter">
+                        @foreach (var type in Model.PokemonTypes)
+                        {
+                            <label class="col-span-4 pl-4 py-2">
+                                <span class="text-sm">@type.TypeName</span>
+                                <input type="checkbox" name="selectedTypes" value="@type.TypeName" class="cursor-pointer mr-2 leading-tight">
+                            </label>
+                        }
+                        <button class="col-span-9 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded" type="submit">
+                            Apply
+                        </button>
                     </form> *@
                 </div>
             </div>
@@ -36,15 +36,15 @@
     <form method="post" class="mb-4">
         <label asp-for="Search.Name" class="block font-semibold mb-2">Name</label>
         <input asp-for="Search.Name" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
-        <span asp-validation-for="Search.Name" class="text-red-500"></span>
-
+        @*         <span asp-validation-for="Search.Name" class="text-red-500"></span>
+        *@
         <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 mt-4" type="submit">Search</button>
     </form>
 
-    @if (Model.FilteredPokemon != null && Model.FilteredPokemon.Any())
+    @if (Model.Pokemons != null && Model.Pokemons.Any())
     {
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-            @foreach (var pokemon in Model.FilteredPokemon)
+            @foreach (var pokemon in Model.Pokemons)
             {
                 <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
                     <h2 class="text-2xl font-bold mb-4 text-center">@pokemon.Name</h2>
@@ -94,6 +94,7 @@
     }
     @if (Model.Pokemon != null)
     {
+        <div class="mt-4 text-red-500">@Model.Message</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
             <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
                 <h2 class="text-2xl font-bold mb-4 text-left">@Model.Pokemon.Name</h2>

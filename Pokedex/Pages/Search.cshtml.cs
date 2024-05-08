@@ -20,12 +20,11 @@ public class SearchModel : PageModel
     }
 
     public Pokemon Pokemon { get; set; }
-    public IEnumerable<Pokemon> FilteredPokemon { get; set; }
-
+    public IEnumerable<Pokemon> Pokemons { get; set; }
     public List<PokemonType> PokemonTypes { get; set; }
 
+    [BindProperty]
     public List<string> SelectedTypes { get; set; }
-
     public string Message { get; set; }
 
     [BindProperty]
@@ -39,52 +38,51 @@ public class SearchModel : PageModel
     //    Search.Name = "";
     //}
 
+    public async Task OnGetAsync()
+    {
+        PokemonTypes = await _typeRepository.GetTypes();
+        Pokemons = await _pokemonRepository.GetPokemons();
+    }
+
+    public async Task<IActionResult> OnGetApplyFilterAsync()
+    {
+        PokemonTypes = await _typeRepository.GetTypes();
+
+        if (SelectedTypes == null || SelectedTypes.Count == 0)
+        {
+            // No types selected, return all Pokemons
+            Pokemons = await _pokemonRepository.GetPokemons();
+        }
+        else
+        {
+            // Fetch Pokemons based on selected types
+            Pokemons = await _typeRepository.GetPokemonsByType(SelectedTypes);
+        }
+        return Page();
+    }
     public async Task OnPostAsync()
     {
-        //if (Search.Name == null)
-        //{
-        //    ModelState.Clear();
-        //    Message = "Not found";
-        //    return;
-        //}
 
-        //if (!await _pokemonRepository.PokemonExists(Search.Name))
-        //{
-        //    Message = "This Pokemon does not exist";
-        //    return;
-        //}
-
-        //Pokemon = await _pokemonRepository.GetPokemon(Search.Name);
-        //ModelState.Clear();
-        //Message = "Successfully retrieved Pokemon";
-
-        if (!string.IsNullOrEmpty(Search.Name))
+        // Check if a search query parameter is provided
+        if (!string.IsNullOrEmpty(Search?.Name))
         {
-            // Fetch the specific Pokemon based on the search name
+            // Perform the search operation
             Pokemon = await _pokemonRepository.GetPokemon(Search.Name);
             if (Pokemon != null)
             {
-                Message = "";
+                // If the Pokemon is found, populate the message
+                Message = "Successfully retrieved Pokemon";
             }
             else
             {
+                // If the Pokemon is not found, set an appropriate message
                 Message = "Pokemon not found";
             }
         }
-    }
-
-    public async Task OnGetAsync()
-    {
-        FilteredPokemon = await _pokemonRepository.GetPokemons();
-
-
-        //if (SelectedTypes != null || SelectedTypes.Any())
-        //{
-        //    FilteredPokemon = await _typeRepository.GetPokemonsByType(SelectedTypes);
-        //}
-        //else
-        //{
-        //    Message = "This Pokemon does not exist";
-        //}
+        else
+        {
+            // If no search query parameter is provided, retrieve all Pokemons
+            Pokemons = await _pokemonRepository.GetPokemons();
+        }
     }
 }
