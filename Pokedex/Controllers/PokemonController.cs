@@ -27,7 +27,7 @@ namespace Pokedex.Controllers
 
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<Pokemon>> GetPokemons()
+        public async Task<ActionResult<PokemonDto>> GetPokemons()
         {
             var pokemons = _mapper.Map<List<PokemonDto>>(await _pokemonRepository.GetPokemons());
 
