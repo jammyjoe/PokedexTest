@@ -24,7 +24,7 @@ public class SearchModel : PageModel
     public List<PokemonType> PokemonTypes { get; set; }
 
     [BindProperty]
-    public List<string> SelectedTypes { get; set; }
+    public string SelectedTypes { get; set; }
     public string Message { get; set; }
 
     [BindProperty]
@@ -48,7 +48,7 @@ public class SearchModel : PageModel
     {
         PokemonTypes = await _typeRepository.GetTypes();
 
-        if (SelectedTypes == null || SelectedTypes.Count == 0)
+        if (SelectedTypes == null)
         {
             // No types selected, return all Pokemons
             Pokemons = await _pokemonRepository.GetPokemons();

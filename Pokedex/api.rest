@@ -142,5 +142,5 @@ GET https://localhost:7224/type
 
 ###
 
-GET https://localhost:7224/type/water
+GET https://localhost:7224/type/Water
 

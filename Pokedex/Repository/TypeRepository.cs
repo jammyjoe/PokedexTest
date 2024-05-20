@@ -21,7 +21,7 @@ public class TypeRepository : ITypeRepository
         return await _context.PokemonTypes.ToListAsync();
     }
 
-    public async Task<List<Pokemon>> GetPokemonsByType(List <string> typeNames)
+    public async Task<List<Pokemon>> GetPokemonsByType(string typeNames)
     {
         if (typeNames == null || !typeNames.Any())
         {

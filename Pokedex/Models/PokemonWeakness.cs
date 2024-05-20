@@ -8,7 +8,7 @@ namespace PokedexAPI.Models
     {
         public int Id { get; set; }
         public int? PokemonId { get; set; }
-        [Column("type_id")]
+        //[Column("type_id")]
         public int? TypeId { get; set; }
 
         public virtual Pokemon? Pokemon { get; set; }

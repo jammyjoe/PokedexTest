@@ -40,7 +40,7 @@ public class TypeController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
 
-    public async Task<ActionResult<Type>> GetPokemonsByType(List <string> typeName)
+    public async Task<ActionResult<Type>> GetPokemonsByType(string typeName)
     {
         var pokemons = await _typeRepository.GetPokemonsByType(typeName);
 
@@ -48,8 +48,7 @@ public class TypeController : ControllerBase
         {
             return NotFound();
         }
-
-        // Map the list of Pokemons to a list of PokemonDto objects
+        
         var pokemonDtos = _mapper.Map<List<PokemonDto>>(pokemons);
 
         return Ok(pokemonDtos);

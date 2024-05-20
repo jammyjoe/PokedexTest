@@ -214,3 +214,8 @@ D:\repos\PokedexTest\Pokedex\obj\Debug\net8.0\refint\PokedexAPI.dll
 D:\repos\PokedexTest\Pokedex\obj\Debug\net8.0\PokedexAPI.pdb
 D:\repos\PokedexTest\Pokedex\obj\Debug\net8.0\PokedexAPI.genruntimeconfig.cache
 D:\repos\PokedexTest\Pokedex\obj\Debug\net8.0\ref\PokedexAPI.dll
+D:\repos\PokedexTest\Pokedex\obj\Debug\net8.0\PokedexAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\repos\PokedexTest\Pokedex\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\repos\PokedexTest\Pokedex\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\repos\PokedexTest\Pokedex\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\repos\PokedexTest\Pokedex\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
