@@ -11,12 +11,9 @@ POST https://localhost:7224/pokemon/3
 Content-Type: application/json
 
 {
-  "name": "Weedle",
+  "name": "Caterpie",
   "type1": {
     "typeName": "Bug"
-  },
-  "type2": {
-    "typeName": "Poison"
   },
   "pokemonWeaknesses": [
     {
@@ -31,7 +28,7 @@ Content-Type: application/json
     },
         {
       "type": {
-        "typeName": "Psychic"
+        "typeName": "Rock"
       }
     }
   ],
@@ -43,22 +40,12 @@ Content-Type: application/json
     },
     {
       "type": {
-        "typeName": "Fighting"
+        "typeName": "Dark"
       }
     },
         {
       "type": {
         "typeName": "Poison"
-      }
-    },
-            {
-      "type": {
-        "typeName": "Fairy"
-      }
-    },
-            {
-      "type": {
-        "typeName": "Bug"
       }
     }
   ]
@@ -67,7 +54,7 @@ Content-Type: application/json
 
 ###
 
-DELETE https://localhost:7224/pokemon/13
+DELETE https://localhost:7224/pokemon/caterpie
 
 ###
 

@@ -57,91 +57,72 @@ namespace Pokedex.Repository
 
         public async Task<Pokemon> CreatePokemon(PokemonDto pokemonDto)
         {
-
             var pokemon = new Pokemon
             {
                 Name = pokemonDto.Name,
             };
 
-            var type1Exists = await PokemonTypeExists(pokemonDto.Type1.TypeName);
-            if (!type1Exists)
-            { 
-                throw new Exception("Invalid Type specified");
-            }
-            else
+            // Local function to validate and retrieve a Pokemon type
+            async Task<PokemonType> GetValidatedPokemonType(string typeName)
             {
-                var type1 = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == pokemonDto.Type1.TypeName);
-                pokemon.Type1Id = type1.Id;
-                pokemon.Type1 = type1;
+                if (!await PokemonTypeExists(typeName))
+                {
+                    throw new Exception($"Invalid Type specified: {typeName}");
+                }
+                return await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == typeName);
             }
 
+            // Assign Type1
+            pokemon.Type1 = await GetValidatedPokemonType(pokemonDto.Type1.TypeName);
+            pokemon.Type1Id = pokemon.Type1.Id;
+
+            // Assign Type2 if it exists
             if (pokemonDto.Type2 != null)
             {
-                var type2Exists = await PokemonTypeExists(pokemonDto.Type2.TypeName);
-                if (!type2Exists)
-                {
-                    throw new Exception("Invalid Type specified");
-                }
-                else
-                {
-                    var type2 = await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == pokemonDto.Type2.TypeName);
-                    pokemon.Type2Id = type2.Id;
-                    pokemon.Type2 = type2;
+                pokemon.Type2 = await GetValidatedPokemonType(pokemonDto.Type2.TypeName);
+                pokemon.Type2Id = pokemon.Type2.Id;
+            }
 
+            // Method to handle weaknesses
+            async Task AddWeaknesses(IEnumerable<PokemonWeaknessDto> weaknesses)
+            {
+                foreach (var weaknessDto in weaknesses)
+                {
+                    var weaknessType = await GetValidatedPokemonType(weaknessDto.Type.TypeName);
+                    var weakness = new PokemonWeakness
+                    {
+                        Pokemon = pokemon,
+                        Type = weaknessType
+                    };
+                    _context.PokemonWeaknesses.Add(weakness);
                 }
             }
 
+            // Method to handle strengths
+            async Task AddStrengths(IEnumerable<PokemonStrengthDto> strengths)
+            {
+                foreach (var strengthDto in strengths)
+                {
+                    var strengthType = await GetValidatedPokemonType(strengthDto.Type.TypeName);
+                    var strength = new PokemonStrength
+                    {
+                        Pokemon = pokemon,
+                        Type = strengthType
+                    };
+                    _context.PokemonStrengths.Add(strength);
+                }
+            }
+
+            // Add weaknesses if any
             if (pokemonDto.PokemonWeaknesses != null)
             {
-                foreach (var weaknessDto in pokemonDto.PokemonWeaknesses)
-                {
-                    var weaknessTypeExists = await PokemonTypeExists(weaknessDto.Type.TypeName);
-                    if (!weaknessTypeExists)
-                    {
-                        // Handle error if the provided  weakness type does not exist
-                        // Similar to the handling for Type1 and Type2
-                    }
-                    else
-                    {
-
-                        var weaknessType =
-                            await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
-                                pt.TypeName == weaknessDto.Type.TypeName);
-
-                        var weakness = new PokemonWeakness()
-                        {
-                            Pokemon = pokemon,
-                            Type = weaknessType
-                        };
-                        _context.PokemonWeaknesses.Add(weakness);
-                    }
-                }
+                await AddWeaknesses(pokemonDto.PokemonWeaknesses);
             }
 
+            // Add strengths if any
             if (pokemonDto.PokemonStrengths != null)
             {
-                foreach (var strengthDto in pokemonDto.PokemonStrengths)
-                {
-                    var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
-                    if (!strengthTypeExists)
-                    {
-                        // Handle error if the provided strength type does not exist
-                        // Similar to the handling for Type1 and Type2
-                    }
-                    else
-                    {
-                        var strengthType =
-                            await _context.PokemonTypes.FirstOrDefaultAsync(pt =>
-                                pt.TypeName == strengthDto.Type.TypeName);
-
-                        var strength = new PokemonStrength
-                        {
-                            Pokemon = pokemon,
-                            Type = strengthType
-                        };
-                        _context.PokemonStrengths.Add(strength);
-                    }
-                }
+                await AddStrengths(pokemonDto.PokemonStrengths);
             }
 
             try
@@ -151,12 +132,18 @@ namespace Pokedex.Repository
             }
             catch (DbUpdateException ex)
             {
+                // Log the exception details
                 var exceptionMessage = ex.Message;
                 var stackTrace = ex.StackTrace;
-                var innerException = ex.InnerException;
+                var innerException = ex.InnerException?.Message;
+
+                // Handle the exception as needed
+                throw new Exception("An error occurred while saving the Pokémon.", ex);
             }
+
             return pokemon;
         }
+
 
         public async Task<bool> PokemonTypeExists(string typeName)
         {

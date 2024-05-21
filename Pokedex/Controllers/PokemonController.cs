@@ -74,7 +74,7 @@ namespace Pokedex.Controllers
                 var createdPokemon = await _pokemonRepository.CreatePokemon(pokemonCreate);
                 var createdPokemonDto = _mapper.Map<PokemonDto>(createdPokemon);
 
-                return CreatedAtAction(nameof(GetPokemon), new { id = createdPokemonDto.Id }, createdPokemonDto);
+                return CreatedAtAction(nameof(GetPokemon), new { name = createdPokemonDto.Name }, createdPokemonDto);
             }
             catch (Exception ex)
             {
@@ -109,16 +109,16 @@ namespace Pokedex.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{name}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Pokemon>> DeletePokemon(int id)
+        public async Task<ActionResult<Pokemon>> DeletePokemon(string name)
         {
-            if (!(await _pokemonRepository.PokemonExists(id)))
+            if (!(await _pokemonRepository.PokemonExists(name)))
                 return NotFound("This pokemon does not exist");
 
-            var pokemonToDelete = (await _pokemonRepository.GetPokemon(id));
+            var pokemonToDelete = (await _pokemonRepository.GetPokemon(name));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
