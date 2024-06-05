@@ -3,7 +3,7 @@ GET https://localhost:7224/pokemon
 
 ###
 
-GET https://localhost:7224/pokemon/5
+GET https://localhost:7224/pokemon/16
 
 ###
 

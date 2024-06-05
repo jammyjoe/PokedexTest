@@ -21,8 +21,6 @@ namespace Pokedex
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
             builder.Services.AddScoped<ITypeRepository, TypeRepository>();
-
-
             builder.Services.AddDbContext<PokedexContext>(options =>
 				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 			builder.Services.AddEndpointsApiExplorer();

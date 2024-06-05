@@ -62,7 +62,6 @@ namespace Pokedex.Repository
                 Name = pokemonDto.Name,
             };
 
-            // Local function to validate and retrieve a Pokemon type
             async Task<PokemonType> GetValidatedPokemonType(string typeName)
             {
                 if (!await PokemonTypeExists(typeName))
@@ -72,18 +71,15 @@ namespace Pokedex.Repository
                 return await _context.PokemonTypes.FirstOrDefaultAsync(pt => pt.TypeName == typeName);
             }
 
-            // Assign Type1
             pokemon.Type1 = await GetValidatedPokemonType(pokemonDto.Type1.TypeName);
             pokemon.Type1Id = pokemon.Type1.Id;
 
-            // Assign Type2 if it exists
             if (pokemonDto.Type2 != null)
             {
                 pokemon.Type2 = await GetValidatedPokemonType(pokemonDto.Type2.TypeName);
                 pokemon.Type2Id = pokemon.Type2.Id;
             }
 
-            // Method to handle weaknesses
             async Task AddWeaknesses(IEnumerable<PokemonWeaknessDto> weaknesses)
             {
                 foreach (var weaknessDto in weaknesses)
@@ -98,7 +94,6 @@ namespace Pokedex.Repository
                 }
             }
 
-            // Method to handle strengths
             async Task AddStrengths(IEnumerable<PokemonStrengthDto> strengths)
             {
                 foreach (var strengthDto in strengths)
@@ -113,13 +108,11 @@ namespace Pokedex.Repository
                 }
             }
 
-            // Add weaknesses if any
             if (pokemonDto.PokemonWeaknesses != null)
             {
                 await AddWeaknesses(pokemonDto.PokemonWeaknesses);
             }
 
-            // Add strengths if any
             if (pokemonDto.PokemonStrengths != null)
             {
                 await AddStrengths(pokemonDto.PokemonStrengths);
@@ -132,12 +125,10 @@ namespace Pokedex.Repository
             }
             catch (DbUpdateException ex)
             {
-                // Log the exception details
                 var exceptionMessage = ex.Message;
                 var stackTrace = ex.StackTrace;
                 var innerException = ex.InnerException?.Message;
 
-                // Handle the exception as needed
                 throw new Exception("An error occurred while saving the Pokémon.", ex);
             }
 
@@ -187,7 +178,6 @@ namespace Pokedex.Repository
 
         public async Task<bool> UpdateType(PokemonDto updatePokemonDto, Pokemon existingPokemon)
         {
-            //Update Types
             var Type1Exists = await PokemonTypeExists(updatePokemonDto.Type1.TypeName);
             var Type2Exists = await PokemonTypeExists(updatePokemonDto.Type2.TypeName);
             if (!Type1Exists)
@@ -209,15 +199,11 @@ namespace Pokedex.Repository
 
             existingPokemon.Type2.TypeName = updatePokemonDto.Type2.TypeName;
 
-            //Update weaknesses
-
             foreach (var weaknessDto in updatePokemonDto.PokemonWeaknesses)
             {
-                //Checks if type exists
                 var weaknessTypeExists = await PokemonTypeExists(weaknessDto.Type.TypeName);
                 if (weaknessTypeExists)
                 {
-                    //Sets weaknesstype to be with FK in Type
                     var weaknessType = await _context.PokemonTypes
                         .FirstOrDefaultAsync(pt => pt.TypeName == weaknessDto.Type.TypeName);
 
@@ -230,11 +216,9 @@ namespace Pokedex.Repository
                     if (existingWeakness != null)
                     {
                         existingWeakness.TypeId = weaknessType.Id;
-                        //existingWeakness.Type.Id = weaknessType.Id;
                     }
                     else
                     {
-                        // Add new weakness
                         var newWeakness = new PokemonWeakness()
                         {
                             PokemonId = existingPokemon.Id,
@@ -244,9 +228,6 @@ namespace Pokedex.Repository
                     }
                 }
             }
-
-            //Update strength
-
             foreach (var strengthDto in updatePokemonDto.PokemonStrengths)
             {
                 var strengthTypeExists = await PokemonTypeExists(strengthDto.Type.TypeName);
@@ -263,11 +244,9 @@ namespace Pokedex.Repository
                     if (existingStrength != null)
                     {
                         existingStrength.TypeId = strengthType.Id;
-                        //existingStrength.Type.Id = strengthType.Id;
                     }
                     else
                     {
-                        // Add new strength
                         var newStrength = new PokemonStrength()
                         {
                             PokemonId = existingPokemon.Id,
@@ -285,7 +264,6 @@ namespace Pokedex.Repository
             }
             catch (DbUpdateException ex)
             {
-                // Handle any exceptions during database update
                 var exceptionMessage = ex.Message;
                 var stackTrace = ex.StackTrace;
                 var innerException = ex.InnerException;

@@ -35,26 +35,13 @@ public class PokemonControllerTests
         Assert.That(result, Is.Not.Null);
         Assert.IsInstanceOf<OkObjectResult>(result.Result);
 
-        //    // Arrange
-        //    var pokemons = A.Fake<list<PokemonDto>>();
-        //    A.CallTo(() => _fakePokemonRepository.GetPokemons()).Returns(pokemons);
-        //    var controller = new PokemonController(_fakeContext, _fakePokemonRepository, _fakeMapper);
-
-        //    // Act
-        //    var result = await controller.GetPokemons();
-
-        //    // Assert
-        //    Assert.That(result, Is.Not.Null);
-        //    Assert.IsInstanceOf<OkObjectResult>(result.Result);
-        //}
-
     }
 
     [Test]
     public async Task PokemonController_GetPokemon_ReturnsOkObjectResult_WhenPokemonExists()
     {
         // Arrange
-        string pokemonName = "r";
+        string pokemonName = "";
         var pokemonDto = new Pokemon { Name = pokemonName }; 
         A.CallTo(() => _fakePokemonRepository.PokemonExists(pokemonName)).Returns(true);
         //A.CallTo(() => _fakePokemonRepository.GetPokemon(pokemonName)).Returns(pokemonDto);
